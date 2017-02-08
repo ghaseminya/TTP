@@ -1,0 +1,347 @@
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+
+<window id="addwin" border="normal" width="700px" height="500px" position="center" 
+			mode="overlapped"
+			visible="false"
+            
+            >
+                <attribute name="onClose">
+                    refresh();
+                </attribute>
+                
+    <caption><label value="استاد جدید" style="font-family:'B Titr';font-size:10pt;color:green"/>
+        </caption>
+        <div align="left"><image src="/img/close.png" onClick="addwin.setVisible(false)" tooltip="exi"/>
+        <popup id="exi" width="90px">
+		<html>بستن پنجره</html>
+	     </popup>
+        </div>
+<zscript>
+    import mnm.asatid.*;
+    import java.util.List;
+    import java.util.Iterator;
+    import java.util.Set;
+    public void insert(String names,boolean[] limis,String pids,String schols,String secus,String comments){
+    asatid mnmsa=new asatid();
+    mnmsa.setName(names);
+    mnmsa.setLimitation(limis);
+    mnmsa.setPersenel(pids);
+    mnmsa.setSchollid(schols);
+    mnmsa.setSecuence(secus);
+    mnmsa.setComent(comments);
+    new asatidlist().insert(mnmsa);
+    alert("new is ");
+    }
+</zscript>
+        <h:div align="right" dir="rtl">
+<div align="right">
+    <label value="لطفا مشخصات استاد مورد نظر را وارد کنید" style="font-family:'B Titr';font-size:10pt;"/>
+    <separator bar="true"/>
+    </div>
+    <div align="center">
+        <style dynamic="true">
+	.ctl { border: 1px outset #777; background:#cfeaf1; margin: 2px;
+	margin-right: 10px; padding-left: 2px; padding-right: 2px;
+	display: block; width:80px; text-align:center; }
+</style>
+            <grid fixedLayout="true" width="450px">
+		<columns>
+			<column label="عنوان " width="100px" align="right"/>
+			<column label="شرح" align="right"/>
+		</columns>
+		<rows>
+			<row>
+				نام و نام خانوادگی
+					<textbox id="name" width="250px" value="" style="font-family:'B Titr';font-size:8pt;color:#435D62"/>
+			</row>
+			<row>
+				شماره  پرسنلی ( در صورت  لزوم )
+					<textbox id="pid" width="250px" style="font-family:'B Titr';font-size:8pt;color:#435D62"/>
+			</row>
+
+			<row>
+				توضیحات
+				<hbox>
+					<textbox id="intro" rows="3" width="250px"/>
+				</hbox>
+			</row>
+            <row>
+دروس تدریسی
+                <hbox >
+                        <textbox id="darsi" rows="2" width="250px"/>
+                    <label sclass="ctl"  value="حذف آخرین">
+                        <attribute name="onClick">
+                            try{
+
+                            String temp=darsi.getValue();
+                            temp=temp.substring(0,temp.lastIndexOf(" | "));
+                            darsi.setValue(temp);
+
+        }catch(IndexOutOfBoundsException a)
+        {
+temp="";
+                            darsi.setValue(temp);
+
+        }
+                        </attribute>
+                    </label>
+				</hbox>
+			</row>
+		</rows>
+	</grid>
+	</div>
+        
+        <hbox>
+            <panel id="win" border="normal" width="380px" height="165px"  >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+<label value="حضور اساتید در موسسه"/>
+
+</caption>
+
+        <zscript>
+      grades = new String[] {"", "", ""};
+day = new String[] {"جمعه","پنج شنبه","چهار شنبه","سه شنبه","دو شنبه","یک شنبه","شنبه"};
+int i=0;
+String k="";
+String list="";
+String test="";
+  </zscript>
+
+  <panelchildren>
+<grid id="grid1">
+		<columns >
+			<column label="${each}" forEach="${day}" align="right"/>
+		</columns>
+		<rows>
+			<row >
+              <listbox  multiple="true" checkmark="true" forEach="${day}">
+<zscript>
+i++;
+key="i"+i;
+list="l"+key;
+test=test+"\t\t"+list;
+</zscript>
+               <listhead>
+			<listheader label="همه"/>
+		</listhead>
+    <listitem id="${list}" forEach="${grades}">
+<zscript>
+
+i++;
+key="i"+i;
+list="l"+key;
+test=test+"\t\t"+list;
+</zscript>
+<listcell label="" />
+    </listitem >
+    <attribute name="onSelect">
+               // alert("salam");
+                sum.setValue(fechsum());
+                </attribute>
+  </listbox>
+
+			</row>
+		
+        <row spans="7">
+            <grid>
+                <columns>
+                    <column />
+                    <column width="50%"/>
+                </columns>
+                <rows><row>
+      <hbox><toolbarbutton label="همه" onClick="mnm(true)"/>
+<toolbarbutton label="هیچ" onClick="mnm(false)"/></hbox>
+                <hbox>
+<hbox><div align="left" style="float:left">
+<label value="کل ساعات حضور" style="font-family:'B Titr';font-size:8pt;color:#435D62"/>
+<label id="sum" value="0" style="font-family:'B Titr';font-size:8pt;color:blue"/>
+<label value="ساعت" style="font-family:'B Titr';font-size:8pt;color:#435D62"/>
+</div>
+</hbox></hbox>
+
+                </row></rows>
+            </grid>
+			</row>
+            </rows>
+            
+
+</grid>
+<zscript>
+    import mnm.dars.*;
+    darslist as=new darslist();
+    List mnm=as.selectAll(1);
+    List mast=new  ArrayList();
+    for (int i=0;i&lt;mnm.size();i++){
+        dars ni=(dars) mnm.get(i);
+        mast.add(new SimpleTreeNode(ni.getName(),ni.getSub()));
+        }
+SimpleTreeNode rootaslsi = new SimpleTreeNode("",mast);
+SimpleTreeModel ass=new SimpleTreeModel(rootaslsi);
+public void clean(){
+name.setValue("");
+pid.setValue("");
+intro.setValue("");
+darsi.setValue("");
+mnm(false);
+}
+public void mnm(boolean key){
+li1.setSelected(key);
+li2.setSelected(key);
+li3.setSelected(key);
+//li4.setSelected(key);
+li5.setSelected(key);
+li6.setSelected(key);
+li7.setSelected(key);
+//li8.setSelected(key);
+li9.setSelected(key);
+li10.setSelected(key);
+li11.setSelected(key);
+//li12.setSelected(key);
+li13.setSelected(key);
+li14.setSelected(key);
+li15.setSelected(key);
+//li16.setSelected(key);
+li17.setSelected(key);
+li18.setSelected(key);
+li19.setSelected(key);
+li21.setSelected(key);
+li22.setSelected(key);
+li23.setSelected(key);
+li25.setSelected(key);
+li26.setSelected(key);
+li27.setSelected(key);
+sum.setValue(fechsum());
+}
+
+public boolean[] fech(){
+boolean[] res=new boolean[3*7];
+res[0]=li1.isSelected();
+res[1]=li2.isSelected();
+res[2]=li3.isSelected();
+res[3]=li5.isSelected();
+res[4]=li6.isSelected();
+res[5]=li7.isSelected();
+res[6]=li9.isSelected();
+res[7]=li10.isSelected();
+res[8]=li11.isSelected();
+res[9]=li13.isSelected();
+res[10]=li14.isSelected();
+res[11]=li15.isSelected();
+res[12]=li17.isSelected();
+res[13]=li18.isSelected();
+res[14]=li19.isSelected();
+res[15]=li21.isSelected();
+res[16]=li22.isSelected();
+res[17]=li23.isSelected();
+res[18]=li25.isSelected();
+res[19]=li26.isSelected();
+res[20]=li27.isSelected();
+return res;
+}
+public String fechsum(){
+int sum=0;
+if(li1.isSelected())sum++;
+if(li2.isSelected())sum++;
+if(li3.isSelected())sum++;
+if(li5.isSelected())sum++;
+if(li6.isSelected())sum++;
+if(li7.isSelected())sum++;
+if(li9.isSelected())sum++;
+if(li10.isSelected())sum++;
+if(li11.isSelected())sum++;
+if(li13.isSelected())sum++;
+if(li14.isSelected())sum++;
+if(li15.isSelected())sum++;
+if(li17.isSelected())sum++;
+if(li18.isSelected())sum++;
+if(li19.isSelected())sum++;
+if(li21.isSelected())sum++;
+if(li22.isSelected())sum++;
+if(li23.isSelected())sum++;
+if(li25.isSelected())sum++;
+if(li26.isSelected())sum++;
+if(li27.isSelected())sum++;
+return sum+"";
+}
+</zscript>
+</panelchildren>
+</panel>
+ <panel id="win2" border="normal" width="300px" height="165px"  >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+
+<label value="دروس تدریسی استاد"/>
+</caption>
+
+
+
+  <panelchildren>
+<tree id="tre"  rows="8" height="135px" zclass="z-dottree" model="${ass}" >
+    <attribute name="onSelect">{
+    Treeitem sasan=(Treeitem) tre.getSelectedItem().getParent().getParent();
+//  	    alert(sasan.getLabel());
+        if(darsi.value=="")
+        darsi.value=darsi.value +tre.getSelectedItem().getLabel();
+        else
+        darsi.value=darsi.value+" | "+tre.getSelectedItem().getLabel();
+
+	    }
+	</attribute>
+	<treecols sizable="true">
+		<treecol label=" و د رسرشته" align="right"/>
+	</treecols>
+	
+</tree></panelchildren>
+</panel>
+        </hbox>
+</h:div>
+ <style>
+			.btndiv .z-button-cr, .btndiv .z-button-cl,
+			.btndiv .z-button-bl, .btndiv .z-button-bm,
+			.btndiv .z-button-br, .btndiv .z-button-tl,
+			.btndiv .z-button-tm, .btndiv .z-button-tr {
+					background-image:none;
+				}
+				.btndiv .z-button-cm {
+					background : transparent url('') no-repeat 0 0 ;
+				}
+			.myBlack .z-button-cm {
+				background-image : url(img/button.png);
+			}
+			.myBlue .z-button-cm {
+				background-image : url(img/b-button.png);
+			}
+			.myRed .z-button-cm {
+				background-image : url(img/r-button.png);
+			}
+			.z-button-focus .z-button-cm {
+				background-position: 0 -62px
+			}
+			.z-button-over .z-button-cm {
+				background-position: 0 -30px
+			}
+			.z-button-clk .z-button-cm {
+				background-position: 0 -93px
+			}
+		</style>
+<separator bar="true"/>
+<div class="btndiv" align="center">
+<button id="btn2" label="ذخیره و خروج" height="38px" sclass="myBlack" width="106px" >
+      <attribute name="onClick">
+             if(!name.value.isEmpty())
+             insert(name.value,fech(),pid.value,"1",darsi.value,intro.value);
+             refresh();
+             addwin.setVisible(false);
+         </attribute>
+         </button>
+     <button id="btn"  label="ذخیره اطلاعات" height="38px" sclass="myBlack" width="106px" >
+         <attribute name="onClick">
+             insert(name.value,fech(),pid.value,"1",darsi.value,intro.value);
+             clean();
+         </attribute>
+     </button>
+</div>
+</window>
+
+</zk>

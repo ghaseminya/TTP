@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<groupbox id="gb" mold="3d" onOpen="" style="text-align: right;" open="false">
+
+
+    <caption style="text-align: right;"  >
+<label value="پنل مدیریت"/></caption>
+		<div class="btndiv">
+			<button id="btn" label="My Button" height="38px" sclass="myBlack" width="106px" >
+           	<attribute name="onClick">{
+		final Window win = (Window) Executions.createComponents(
+				"/img/hello.zul", null, null);
+		win.setMaximizable(true);
+		win.doModal();
+	}</attribute>
+    </button>
+		</div>
+    
+    
+</groupbox>
+
+

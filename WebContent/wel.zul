@@ -1,0 +1,223 @@
+
+    <zk>
+<button label="mnm is ok" >
+        <attribute name="onClick">
+                    cen1.setSrc("learninfo.zul");
+
+                </attribute>
+                </button><borderlayout id="bor1" height="650px" style="background:#c5e6ef;">
+<north size="80px" border="0" style="background:#96D0FF;">
+
+        <div>
+
+            <div align="center">
+			<label style="font-family: 'B Titr';font-weight:bold;color:green;font-size:12pt" value="نرمافزار زمان بند "/>
+            </div>
+
+            <div align="left">
+ 				<button label="جستجوی سایت"/><textbox style="text-align:right" sclass="demo-search-inp"/>
+			</div>
+
+		</div>
+	</north>
+
+<west>
+		<panel width="100px" border="normal" title="Navigation">
+				<panelchildren style="padding:5px;">
+					<vbox>
+						<toolbarbutton label="خانهه"/>
+						<toolbarbutton label="Sitemap"/>
+						<toolbarbutton label="دمو"/>
+						<toolbarbutton label="ZK Team"/>
+						<toolbarbutton label="Releases"/>
+						<toolbarbutton label="Calender"/>
+					</vbox>
+				</panelchildren>
+			</panel>
+	</west>
+<east width="150px" title="لینک سریع" flex="true" margins="0,5,5,0" collapsible="true">
+		<panel width="100%" border="normal" title="منو های اصلی" style="text-align:right">
+				<panelchildren style="padding:5px;text-align:right">
+					<vbox align="right">
+						<toolbarbutton label="اطلاعات اولیه موسسه" style="text-align:right" >
+                             <attribute name="onClick">
+
+                   // Iframe ifs=new Iframe();
+                   // ifs.setSrc("learninfo.zul");
+                   // ifs.setHeight("100%");
+////                    ifs.setWidth("100%");
+   //                 Panelchildren mo=new Panelchildren();
+     //               mo.appendChild(ifs);
+       //             wi.getChildren().clear();
+         //           wi.appendChild(mo   );
+         cen1.setSrc("learninfo.zul");
+                </attribute>
+                </toolbarbutton>
+						<toolbarbutton label="Sitemap">
+                            <attribute name="onClick">
+
+                   // Iframe ifs=new Iframe();
+                   // ifs.setSrc("learninfo.zul");
+                   // ifs.setHeight("100%");
+////                    ifs.setWidth("100%");
+   //                 Panelchildren mo=new Panelchildren();
+     //               mo.appendChild(ifs);
+       //             wi.getChildren().clear();
+         //           wi.appendChild(mo   );
+         cen1.setSrc("center.zul");
+         wi.setTitle("asdasd");
+                </attribute>
+                </toolbarbutton>
+						<toolbarbutton label="Statement of Direction"/>
+						<toolbarbutton label="ZK Team"/>
+						<toolbarbutton label="Releases"/>
+						<toolbarbutton label="Calender"/>
+					</vbox>
+				</panelchildren>
+			</panel>
+	</east>
+				<center   >
+                    <panel id="wi" border="normal" title="mnm is ok" height="100%" width="100%" ><panelchildren>
+                    <iframe id="cen1" src="http://www.google.com" height="100%" width="100%" style="border: 1px solid gray" />
+                    </panelchildren></panel>
+                  </center>
+<south>
+<toolbar mold="panel" align="center">
+			<toolbarbutton label="Sign in"/>
+			<toolbarbutton label="خانه" style="font-size:7pt;">
+                <attribute name="onClick">
+			//Center center = ;
+			//center.setFlex(true);
+			//center.getChildren().clear();
+			alert("asdasd");
+            Executions.createComponents("learninfo.zul", bor1.getCenter(), null);
+                </attribute>
+                </toolbarbutton>
+			<toolbarbutton label="داده" style="font-size:7pt;">
+                <attribute name="onClick">
+                    cen1.setSrc("learninfo.zul");
+                </attribute>
+                </toolbarbutton>
+			<toolbarbutton label="Terms" style="font-size:7pt;"/>
+			<toolbarbutton label="Report Abuse" style="font-size:7pt;"/>
+			<toolbarbutton label="Print" style="font-size:7pt;"/>
+			<separator orient="vertical" bar="true" style="font-size:7pt;"/>
+
+			<toolbarbutton label="ADOJI  شرکت " style="font-size:7pt;">
+                <attribute name="onClick" >{
+             final Window win = (Window) wins;
+                 win.doModal();
+             }
+             </attribute>
+            </toolbarbutton>
+            <label value="تمام حقوق مالی ومعنوی متعلق به" style="font-size:7pt;"/>
+
+		</toolbar>
+</south>
+			</borderlayout>
+<zscript>
+//borderLayout_branchList.setHeight("1000px");
+</zscript>q
+			<borderlayout height="650px" style="background:#c5e6ef;">
+<north size="80px" border="0" style="background:#96D0FF;">
+
+        <div>
+
+            <div align="center">
+			<label style="font-family: 'B Titr';font-weight:bold;color:green;font-size:12pt" value="نرمافزار زمان بند "/>
+            </div>
+
+            <div align="left">
+ 				<button label="جستجوی سایت"/><textbox style="text-align:right" sclass="demo-search-inp"/>
+			</div>
+
+		</div>
+	</north>
+
+<west>
+		<panel width="100px" border="normal" title="Navigation">
+				<panelchildren style="padding:5px;">
+					<vbox>
+						<toolbarbutton label="خانهه"/>
+						<toolbarbutton label="Sitemap"/>
+						<toolbarbutton label="دمو"/>
+						<toolbarbutton label="ZK Team"/>
+						<toolbarbutton label="Releases"/>
+						<toolbarbutton label="Calender"/>
+					</vbox>
+				</panelchildren>
+			</panel>
+	</west>
+<east width="150px" title="لینک سریع" flex="true" margins="0,5,5,0" collapsible="true">
+		<panel width="100%" border="normal" title="منو های اصلی" style="text-align:right">
+				<panelchildren style="padding:5px;text-align:right">
+					<vbox align="right">
+						<toolbarbutton label="اطلاعات اولیه موسسه" style="text-align:right" >
+                             <attribute name="onClick">
+                    cen1.setSrc("learninfo.zul");
+                </attribute>
+                </toolbarbutton>
+						<toolbarbutton label="Sitemap"/>
+						<toolbarbutton label="Statement of Direction"/>
+						<toolbarbutton label="ZK Team"/>
+						<toolbarbutton label="Releases"/>
+						<toolbarbutton label="Calender"/>
+					</vbox>
+				</panelchildren>
+			</panel>
+	</east>
+				<center   >
+                    <panel id="wis" border="normal" title="mnm is ok" height="100%" width="100%" ><panelchildren>
+                    <iframe id="cen1s" src="http://www.google.com" height="100%" width="100%" style="border: 1px solid gray" />
+                    </panelchildren></panel>
+                  </center>
+<south>
+<toolbar mold="panel" align="center">
+			<toolbarbutton label="Sign in"/>
+			<toolbarbutton label="خانه" style="font-size:7pt;">
+                <attribute name="onClick">
+                    cen1.setSrc("center.zul");
+                </attribute>
+                </toolbarbutton>
+			<toolbarbutton label="داده" style="font-size:7pt;">
+                <attribute name="onClick">
+                    cen1.setSrc("learninfo.zul");
+                </attribute>
+                </toolbarbutton>
+			<toolbarbutton label="Terms" style="font-size:7pt;"/>
+			<toolbarbutton label="Report Abuse" style="font-size:7pt;"/>
+			<toolbarbutton label="Print" style="font-size:7pt;"/>
+			<separator orient="vertical" bar="true" style="font-size:7pt;"/>
+
+			<toolbarbutton label="ADOJI  شرکت " style="font-size:7pt;">
+                <attribute name="onClick" >{
+             final Window win = (Window) wins;
+                 win.doModal();
+             }
+             </attribute>
+            </toolbarbutton>
+            <label value="تمام حقوق مالی ومعنوی متعلق به" style="font-size:7pt;"/>
+
+		</toolbar>
+</south>
+			</borderlayout>
+            <window id="winss"  border="normal" visible="false">
+    <caption><label value="ADOJI  شرکت تولید و نگهداری نرم افزار های سازمانی " style="font-family:'B Titr';font-size:10pt;color:green"/></caption>
+    <div align="center">
+    <toolbarbutton label="محمد قاسمی‌نیا"  href="mailto:mohammad.ghasemy@gmail.com" style="font-family:'B Titr';font-size:10pt"/>
+    <label value="  دانشجوی کامپیوتر  " style="font-family:'B Titr';font-size:10pt"/>
+    
+        
+            <hbox>
+
+        <toolbarbutton label="WWW.ADOJI.Ir"  href="http://WWW.ADOJI.Ir" />
+        <label value="آدرس سایت" style="font-family:'B Titr';font-size:10pt"/>
+        </hbox>
+        <toolbarbutton label="صفحه شخصی طراح"  href="http://WWW.mGHasemI.Ir" style="font-family:'B Titr';font-size:10pt"/>
+        <div align="left"><image src="/img/close.png" onClick="wins.setVisible(false)"/></div>
+</div>
+
+</window>
+
+
+</zk>

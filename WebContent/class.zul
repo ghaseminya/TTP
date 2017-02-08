@@ -1,0 +1,331 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+    <h:div align="center" dir="rtl">
+        <zscript>
+            import mnm.dars.*;
+            class LiveGroupRenderer2 implements ListitemRenderer {
+		public void render(Listitem row, java.lang.Object data) {
+			if(data instanceof String[]) {
+				String[] ary = (String[]) data;
+                new Listcell(ary[2]).setParent(row);
+	            new Listcell(ary[1]).setParent(row);
+	            new Listcell(ary[0]).setParent(row);
+
+			} else {
+				new Label(data.toString()).setParent(row);
+			}
+
+		}
+	}
+    LiveGroupRenderer2 resn=new LiveGroupRenderer2();
+    class LiveGroupRenderertwo implements ListitemRenderer {
+		public void render(Listitem row, java.lang.Object data) {
+			if(data instanceof String[]) {
+				String[] ary = (String[]) data;
+                
+	            new Listcell(ary[0]).setParent(row);
+	            new Listcell(ary[1]).setParent(row);
+
+			} else {
+				new Label(data.toString()).setParent(row);
+			}
+
+		}
+	}
+            categorylist cateli=new categorylist();
+            
+            
+
+
+String[][] darsilist;
+String[][] dars;
+String[][] darsi;
+int classid;
+int key;
+boolean key2=false;
+
+
+
+
+
+
+
+            
+
+        </zscript>
+
+
+<vbox>
+    <hbox>
+          <panel id="wi2" border="normal" width="300px" height="300px"  >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+
+<label value="لیست کل کلاس های موسسه"/>
+</caption>
+  <panelchildren>
+	
+    <div align="center">
+	<listbox id="dst"  rows="0"  width="295px" height="245px" >
+	        <listhead>
+                <listheader label="ردیف" align="right" width="35px"/>
+	            <listheader  label="نام کلاس" align="right"/>
+                <listheader  label="رشته" align="right"/>
+                <listheader label="نوع" align="right"/>
+	        </listhead>
+	        <listitem  context="editPopup"  />
+            <listfoot>
+	        <listfooter />
+            <listfooter label="کل کلاس ها" />
+	        <listfooter style="font-family:'B Titr';font-size:2pt;text-align:right" id="clacol" label="0"/>
+            
+	    </listfoot>
+        <attribute name="onSelect">
+            
+            if(key2){
+            key2=false;
+
+cateli.saveclassdars(darsilist,Integer.parseInt(darsi[key][4]));
+key=dst.getSelectedIndex()-1;}
+key=dst.getSelectedIndex()-1;
+	    </attribute>
+        </listbox>
+        <zscript>
+            //////////////////////////////////////////////////------function select all/////////////////////
+             darsi=cateli.getallclass("1");
+            for(int i=0;i&lt;darsi.length;i++)
+            {
+            Listitem li=new Listitem();
+            int as=Integer.parseInt(clacol.getLabel())+1;
+            li.appendChild(new Listcell(as+""));
+            className=darsi[i][1];
+            li.appendChild(new Listcell(darsi[i][1]));
+            li.appendChild(new Listcell(darsi[i][2]));
+            li.appendChild(new Listcell(darsi[i][3]));
+            li.addEventListener("onClick",new EventListener() {
+	public void onEvent(Event event) throws Exception {
+    titles.setValue(darsi[dst.getSelectedIndex()-1][1]);
+    titles.setStyle("font-family:'B Titr';font-size:10pt;text-align:right");
+
+         darsilist=cateli.getdars("1",Integer.parseInt(darsi[dst.getSelectedIndex()-1][4]));//
+         ListModel strs= new SimpleListModel(darsilist);
+         dst1.setModel(strs);
+         LiveGroupRenderer rensa=new LiveGroupRenderer();
+         dst1.setItemRenderer(rensa);
+        clacols.setLabel(darsilist.length+"" );
+    }
+    });
+            clacol.setLabel(as+"");
+            dst.appendChild(li);
+            dst.setItemRenderer(resn);
+            }
+        </zscript>
+        </div>
+	    <zscript>
+            
+			void removeclass() {
+				Listitem s = dst.getSelectedItem();
+				if (s == null)
+					Messagebox.show("لطفا یک کلاس را انتخاب کنید");
+				else
+					{
+                    s.setParent(null);
+                    int as=Integer.parseInt(clacol.getLabel())-1;
+                    clacol.setLabel(as+"");
+                    }
+			}
+            void addclass(String reshte,String classname,String scholl,String kind){
+            
+            cateli.createclass(scholl, classname,kind);//scholl,classname,reshte
+            Listitem li=new Listitem();
+            int as=Integer.parseInt(clacol.getLabel())+1;
+            li.appendChild(new Listcell(as+""));
+            li.appendChild(new Listcell(classname));
+            li.appendChild(new Listcell(reshte));
+            li.appendChild(new Listcell(kind));
+            li.addEventListener("onClick",new EventListener() {
+	public void onEvent(Event event) throws Exception {
+    titles.setValue(classname);
+    titles.setStyle("font-family:'B Titr';font-size:10pt;text-align:right");
+    darsi=cateli.getallclass("1");
+       darsilist=cateli.getdars("1",Integer.parseInt(darsi[dst.getSelectedIndex()-1][4]));
+       ListModel strs= new SimpleListModel(darsilist);
+       dst1.setModel(strs);
+       LiveGroupRenderer rensa=new LiveGroupRenderer();
+       dst1.setItemRenderer(rensa);
+        clacols.setLabel(darsilist.length+"" );
+    }
+    });
+            clacol.setLabel(as+"");
+            dst.appendChild(li);
+
+            }
+            class LiveGroupRenderer implements ListitemRenderer {
+		public void render(Listitem row, java.lang.Object data) {
+			if(data instanceof String[]) {
+				String[] ary = (String[]) data;
+               new Listcell(ary[3]).setParent(row);
+                new Listcell(ary[2]).setParent(row);
+	            new Listcell(ary[1]).setParent(row);
+	            new Listcell(ary[0]).setParent(row);
+
+			} else {
+				new Label(data.toString()).setParent(row);
+			}
+
+		}
+	}
+    
+
+	    </zscript><h:div dir="ltr" align="center">
+        <button label="حذف" onClick="removeclass();"/>
+        <button label="اضافه" onClick="clasname.setVisible(true);"/>
+                                </h:div>
+                                </panelchildren>
+                                    </panel>
+                                    <panel id="win2" border="normal" width="250px" height="300px"  >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+
+<label value="دروس مورد نیاز  کلاس"/>
+
+<label id="titles" />
+
+</caption>
+
+
+
+  <panelchildren id="pan1">
+	<listbox id="dst1"    height="269px">
+	        <listhead>
+                <listheader label="ردیف" align="right" width="32px"/>
+	            <listheader label="نام درس" align="right"/>
+                <listheader label="استاد انتخابی" align="right"/>
+                <listheader label="کد درس" align="right" width="32px"/>
+	        </listhead>
+	        
+            <listfoot>
+                <listfooter/>
+            <listfooter label="کل درس ها " />
+	        <listfooter id="clacols" label="0"/>
+            
+	    </listfoot>
+<attribute name="onSelect">
+    
+     dars=new categorylist().getostad(darsilist[dst1.getSelectedIndex()][0]);
+     //alert(dars.length);
+    ListModel mod2= new SimpleListModel(dars);
+    dst2.setModel(mod2);
+    LiveGroupRenderertwo nsa=new LiveGroupRenderertwo();
+    dst2.setItemRenderer(nsa);
+    pish.setValue(darsilist[dst1.getSelectedIndex()][2]);
+    clacolmast.setLabel(dars.length+"");
+</attribute>
+	    </listbox>
+
+
+</panelchildren>
+</panel>
+<panel id="win3" border="normal" width="150px" height="300px"  >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+
+<label value="اساتید پیشنهادی درس"/>
+<label id="pish" style="font-family:'B Zar';font-size:10pt;text-align:right" />
+</caption>
+
+
+
+  <panelchildren>
+	<listbox id="dst2"   height="257px" >
+	        <listhead>
+                <listheader label="ردیف" align="right" width="32px"/>
+                <listheader label="نام استاد" align="right"/>
+	        </listhead>
+
+                <listfoot>
+            <listfooter label="تعداد" />
+	        <listfooter id="clacolmast" label="0"/>
+
+	    </listfoot>
+<attribute name="onSelect">
+if(dst1.getSelectedIndex()!=-1)
+{
+    darsilist[dst1.getSelectedIndex()][1]=dars[dst2.getSelectedIndex()][1];
+    ListModel mod25= new SimpleListModel(darsilist);
+    dst1.setModel(mod25);
+    key2=true;
+}
+</attribute>
+	    </listbox>
+</panelchildren>
+</panel>
+
+    </hbox>
+
+</vbox>
+
+    </h:div>
+    <window id="clasname" title="کلاس جدید" border="normal" width="300px" position="center" mode="overlapped" visible="false">
+        <h:div dir="rtl" align="center">
+
+        <vbox align="center">
+            <hbox><label value="رشته های موجود"/><combobox id="cate" style="text-align:right">
+			<comboitem label="ریاضی" value="math" style="text-align:right"/>
+			<comboitem label="تجربی" value="tajrobi"  style="text-align:right"/>
+			<comboitem label="انسانی" value="ensani" style="text-align:right"/>
+            <comboitem label="معارف" value="omomi" style="text-align:right"/>
+            <comboitem label="هنر" value="honar" style="text-align:right"/>
+		</combobox></hbox>
+        <hbox><label value="نام کلاس"/><textbox id="clas" /></hbox>
+        <hbox ><h:div dir="ltr" align="center">
+            <button label="لغو" onClick="clasname.setVisible(false);"/>
+            <button label="انتخاب" >
+            <attribute name="onClick">
+                addclass(cate.getSelectedItem().getLabel(),clas.getValue(),"1",cate.getSelectedItem().getValue());
+                clasname.setVisible(false);
+            </attribute>
+        </button>
+</h:div>
+        
+    </hbox></vbox></h:div></window>
+    <separator bar="true"/>
+ <style>
+			.btndiv .z-button-cr, .btndiv .z-button-cl,
+			.btndiv .z-button-bl, .btndiv .z-button-bm,
+			.btndiv .z-button-br, .btndiv .z-button-tl,
+			.btndiv .z-button-tm, .btndiv .z-button-tr {
+					background-image:none;
+				}
+				.btndiv .z-button-cm {
+					background : transparent url('') no-repeat 0 0 ;
+				}
+			.myBlack .z-button-cm {
+				background-image : url(img/button.png);
+			}
+			.myBlue .z-button-cm {
+				background-image : url(img/b-button.png);
+			}
+			.myRed .z-button-cm {
+				background-image : url(img/r-button.png);
+			}
+			.z-button-focus .z-button-cm {
+				background-position: 0 -62px
+			}
+			.z-button-over .z-button-cm {
+				background-position: 0 -30px
+			}
+			.z-button-clk .z-button-cm {
+				background-position: 0 -93px
+			}
+		</style>
+<div class="btndiv" align="center">
+<button id="btn"  label="ذخیره اطلاعات" height="38px" sclass="myBlack" width="106px" >
+<attribute name="onClick">
+if(dst.getSelectedIndex()!=-1)
+            {cateli.saveclassdars(darsilist,Integer.parseInt(darsi[dst.getSelectedIndex()-1][4]));
+           alert("تمام داده ذخیره شد.");}
+</attribute>
+</button>
+</div>
+</zk>

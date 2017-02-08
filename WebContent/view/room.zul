@@ -1,0 +1,60 @@
+<?page title="لیست گروه ‌های آموزشی" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+
+<grid id="gr1">
+		<columns>
+			<column label="ردیف"/>
+			<column label="نام اتاق"/>
+			<column label="ساختمان"/>
+			<column label="طبقه"/>
+			<column label="قسمت"/>
+			<column label="تعداد صندلی"/>
+			 <column label="آزمایشگاه ۱"/>
+			 <column label="آزمایشگاه ۲"/>
+			 <column label="آزمایشگاه ۳"/>
+		</columns>
+		<rows>
+			<row>			
+			</row>
+		</rows>
+	</grid>
+	<zscript>
+
+
+String[][] data=new mnm.view.room().fetch();
+
+public class LiveGroupRendesas   implements RowRenderer
+{
+
+    public LiveGroupRendesa()
+    {
+    }
+
+    public void render(Row row, Object data)
+    {
+        if(data instanceof String[])
+        {
+            String[] ary = (String[])(String[])(String[])data;
+(new Label(ary[8])).setParent(row);
+(new Label(ary[7])).setParent(row);
+(new Label(ary[6])).setParent(row);
+(new Label(ary[5])).setParent(row);
+(new Label(ary[4])).setParent(row);
+(new Label(ary[3])).setParent(row);
+(new Label(ary[2])).setParent(row);
+(new Label(ary[1])).setParent(row);
+(new Label(ary[0])).setParent(row);
+
+        } else
+        {
+            //(new Label(data.toString())).setParent(row);
+        }
+    }
+}
+LiveGroupRendesas renderersa = new LiveGroupRendesas();
+ListModel models = new SimpleListModel(data);
+gr1.setRowRenderer(renderersa);
+gr1.setModel(models);
+</zscript>
+</zk>

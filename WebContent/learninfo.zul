@@ -1,0 +1,516 @@
+
+<zk>
+    <zscript>
+        public boolean rahnemaii=false;
+        public boolean dabirestan=false;
+        public boolean pish=false;
+        public boolean honar=false;
+        public boolean karvadanesh=false;
+        public boolean faniherfi=false;
+        public boolean dabirestan1=false;
+        public boolean pish1=false;
+        public boolean honar1=false;
+        public boolean karvadanesh1=false;
+        public boolean faniherfi1=false;
+        public boolean dabirestan2=false;
+        public boolean pish2=false;
+        public boolean honar2=false;
+        public boolean karvadanesh2=false;
+        public boolean faniherfi2=false;
+
+        </zscript>
+     <toolbar>
+	<bandbox id="bd">
+		<bandpopup>
+			<vbox>
+				<hbox>
+					Search
+					<textbox />
+				</hbox>
+				<listbox width="200px"
+					onSelect="bd.value=self.selectedItem.label; bd.closeDropdown();">
+					<listhead>
+						<listheader label="Name" />
+						<listheader label="Description" />
+					</listhead>
+					<listitem>
+						<listcell label="برقعی" />
+						<listcell label="استاد" />
+					</listitem>
+					<listitem>
+						<listcell label="جدی" />
+						<listcell label="استاد" />
+					</listitem>
+					<listitem>
+						<listcell label="مسعودی" />
+						<listcell label="استاد" />
+					</listitem>
+				</listbox>
+			</vbox>
+		</bandpopup>
+	</bandbox>
+</toolbar>
+
+
+    <button id="mnms"  label="Down" action="onclick:  zk.hide(#{win});anima.moveDown(#{win})" />
+    <button id="mnmss"  label="Down" onClick="win.setVisible(true)" />
+
+
+<div align="center">
+	<grid fixedLayout="true" width="700px" >
+		<columns>
+			
+            <column label="شرح" width="220px" align="right"/>
+			<column label="عنوان" align="right"/>
+		</columns>
+		<rows>
+			<row>
+                <label value="نام موسسه"/>
+                <textbox width="300px" onChange="btn.setDisabled(false);"
+						constraint="/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*([,;]\s*\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*)*/: Please enter real e-mail address" />
+                
+			</row>
+			<row>
+                <label value="شماره  موسسه"/>
+     			<textbox  width="300px" onChange="btn2.setDisabled(false);" constraint="/([0123456789])*: ‌plsease" />
+                
+			</row>
+            <row>
+                <label value="منطقه"/>
+                <textbox  width="300px"  />
+                
+			</row>
+            <row>
+                <label value="استان"/>
+                <textbox  width="300px"  />
+                
+			</row>
+            <row>
+                <label value="تعداد کاربران"/>
+                <textbox  width="300px"  />
+                
+			</row>
+            <row>
+                <label value="تعداد کلاس ها"/>
+                <textbox  width="300px"  />
+                
+			</row>
+            <row>
+                <label value="امتیاز موسسه در سال پیش"/>
+                <textbox  width="300px"  />
+                
+			</row>
+            <row>
+
+<label value="نوع موسسه"/>
+		<combobox id="combo" style="text-align:right" width="282px" >
+             <attribute name="onSelect">
+                    if(combo.getSelectedIndex()==0)
+                    {r1.setVisible(true);
+                    r2.setVisible(false);
+                    r2.setVisible(false);}
+                    if(combo.getSelectedIndex()==1)
+                    {r1.setVisible(false);
+                    r2.setVisible(true);
+                    r1.setVisible(false);
+                    dabirestan=false;dabirestan1=false;dabirestan2=false;
+faniherfi=false;faniherfi1=false;faniherfi2=false;
+honar=false;honar1=false;honar2=false;
+karvadanesh=false;karvadanesh1=false;karvadanesh2=false;
+ r1_4.setVisible(faniherfi||faniherfi1||faniherfi2);
+                    r1_5.setVisible(karvadanesh||karvadanesh1||karvadanesh2);
+                    r1_6.setVisible(honar||honar1||honar2);
+                    r1_1.setVisible(dabirestan||dabirestan1||dabirestan2);
+                    r101.setVisible(false);
+                    r102.setVisible(false);
+                    }
+             </attribute>
+			<comboitem label=" آموزشی" style="text-align:right"
+				description="مدارس راهنمایی و دبیرستان ،هنرستان ،کاردانش و فنی حرفه ای" />
+			<comboitem label=" حمل و نقل" style="text-align:right"
+				description="انواع دفاتر خدمات هوایی زمینی ریلی دریایی (تست)" />
+			<comboitem label="دانشگاه" style="text-align:right"
+				description="دانشگاه های دولتای آزاد پیم نور" />
+		</combobox>
+        
+			</row>
+            <row id="r1" visible="false">
+ <label value="نوع موسسه آموزشی"/>
+<hbox>
+    <button id="but1" label="موسسه با چند نوع دانش آموز" style="text-align:right;font-size:8pt;">
+        <attribute name="onClick">
+if(r101.isVisible())
+{r102.setVisible(true);but1.setDisabled(true);}
+else
+r101.setVisible(true);
+
+        </attribute>
+        </button>
+		<combobox id="combo1" style="text-align:right" width="100px" >
+            <attribute name="onSelect">
+                    
+                    switch(combo1.getSelectedIndex()){
+                    case 0:{dabirestan=false;faniherfi=false;karvadanesh=false;honar=false;break;}
+                    case 1:{dabirestan=false;faniherfi=false;karvadanesh=false;honar=false;break;}
+                    case 2:{dabirestan=true;faniherfi=false;karvadanesh=false;honar=false;break;}
+                    case 3:{dabirestan=true;faniherfi=false;karvadanesh=false;honar=false;break;}
+                    case 4:{honar=true;dabirestan=false;faniherfi=false;karvadanesh=false;break;}
+                    case 5:{karvadanesh=true;honar=false;dabirestan=false;faniherfi=false;break;}
+                    case 6:{faniherfi=true;karvadanesh=false;honar=false;dabirestan=false;break;}
+                    }
+                    r1_4.setVisible(faniherfi||faniherfi1||faniherfi2);
+                    r1_5.setVisible(karvadanesh||karvadanesh1||karvadanesh2);
+                    r1_6.setVisible(honar||honar1||honar2);
+                    r1_1.setVisible(dabirestan||dabirestan1||dabirestan2);
+
+             </attribute>
+             <comboitem label="ابتدایی" style="text-align:right"/>
+			<comboitem label="راهنمایی" style="text-align:right"/>
+            <comboitem label="دبیرستان" style="text-align:right"/>
+            <comboitem label="پیش دانشگاهی" style="text-align:right"/>
+            <comboitem label="هنرستان" style="text-align:right"/>
+            <comboitem label="کاردانش" style="text-align:right"/>
+            <comboitem label="فنی حرفه ای" style="text-align:right"/>
+
+			
+		</combobox>
+        <combobox id="combo12" style="text-align:right" width="100px" >
+          
+             <comboitem label="دولتی" style="text-align:right"/>
+			<comboitem label="غیر انتفاعی" style="text-align:right"/>
+
+
+
+		</combobox></hbox>
+       
+			</row>
+
+
+<row id="r101" visible="false">
+<label value="نوع موسسه آموزشی"/>
+<hbox>
+        <button label="-" >
+        <attribute name="onClick">
+r101.setVisible(false);
+but1.setDisabled(false);
+dabirestan1=false;
+faniherfi1=false;
+honar1=false;
+karvadanesh1=false;
+ r1_4.setVisible(faniherfi||faniherfi1||faniherfi2);
+                    r1_5.setVisible(karvadanesh||karvadanesh1||karvadanesh2);
+                    r1_6.setVisible(honar||honar1||honar2);
+                    r1_1.setVisible(dabirestan||dabirestan1||dabirestan2);
+        </attribute>
+        </button>
+		<combobox id="combo101" style="text-align:right" width="200px" >
+            <attribute name="onSelect">
+                   switch(combo101.getSelectedIndex()){
+                   case 0:{dabirestan1=false;faniherfi1=false;karvadanesh1=false;honar1=false;break;}
+                    case 1:{dabirestan1=false;faniherfi1=false;karvadanesh1=false;honar1=false;break;}
+                  case 2:{dabirestan1=true;faniherfi1=false;karvadanesh1=false;honar1=false;break;}
+                    case 3:{dabirestan1=true;faniherfi1=false;karvadanesh1=false;honar1=false;break;}
+                    case 4:{honar1=true;dabirestan1=false;faniherfi1=false;karvadanesh1=false;break;}
+                    case 5:{karvadanesh1=true;honar1=false;dabirestan1=false;faniherfi1=false;break;}
+                    case 6:{faniherfi1=true;karvadanesh1=false;honar1=false;dabirestan1=false;break;}
+                    }
+                 r1_4.setVisible(faniherfi||faniherfi1||faniherfi2);
+                    r1_5.setVisible(karvadanesh||karvadanesh1||karvadanesh2);
+                    r1_6.setVisible(honar||honar1||honar2);
+                    r1_1.setVisible(dabirestan||dabirestan1||dabirestan2);
+             </attribute>
+             <comboitem label="ابتدایی" style="text-align:right"/>
+			<comboitem label="راهنمایی" style="text-align:right"/>
+            <comboitem label="دبیرستان" style="text-align:right"/>
+            <comboitem label="پیش دانشگاهی" style="text-align:right"/>
+            <comboitem label="هنرستان" style="text-align:right"/>
+            <comboitem label="کاردانش" style="text-align:right"/>
+            <comboitem label="فنی حرفه ای" style="text-align:right"/>
+
+
+		</combobox>
+
+</hbox>
+        
+			</row>
+
+
+<row id="r102" visible="false">
+<label value="نوع موسسه آموزشی"/>
+<hbox>
+        <button label="-" >
+        <attribute name="onClick">
+r102.setVisible(false);
+but1.setDisabled(false);
+dabirestan2=false;
+faniherfi2=false;
+honar2=false;
+karvadanesh2=false;
+ r1_4.setVisible(faniherfi||faniherfi1||faniherfi2);
+                    r1_5.setVisible(karvadanesh||karvadanesh1||karvadanesh2);
+                    r1_6.setVisible(honar||honar1||honar2);
+                    r1_1.setVisible(dabirestan||dabirestan1||dabirestan2);
+        </attribute>
+        </button>
+		<combobox id="combo102" style="text-align:right" width="200px" >
+            <attribute name="onSelect">
+                           switch(combo102.getSelectedIndex()){
+case 0:{dabirestan2=false;faniherfi2=false;karvadanesh2=false;honar2=false;break;}
+                    case 1:{dabirestan2=false;faniherfi2=false;karvadanesh2=false;honar2=false;break;}
+                  case 2:{dabirestan2=true;faniherfi2=false;karvadanesh2=false;honar2=false;break;}
+                    case 3:{dabirestan2=true;faniherfi2=false;karvadanesh2=false;honar2=false;break;}
+                    case 4:{honar2=true;dabirestan2=false;faniherfi2=false;karvadanesh2=false;break;}
+                    case 5:{karvadanesh2=true;honar=false;dabirestan2=false;faniherfi2=false;break;}
+                    case 6:{faniherfi2=true;karvadanesh2=false;honar2=false;dabirestan2=false;break;}
+                    }
+                 r1_4.setVisible(faniherfi||faniherfi1||faniherfi2);
+                    r1_5.setVisible(karvadanesh||karvadanesh1||karvadanesh2);
+                    r1_6.setVisible(honar||honar1||honar2);
+                    r1_1.setVisible(dabirestan||dabirestan1||dabirestan2);
+             </attribute>
+             <comboitem label="ابتدایی" style="text-align:right"/>
+			<comboitem label="راهنمایی" style="text-align:right"/>
+            <comboitem label="دبیرستان" style="text-align:right"/>
+            <comboitem label="پیش دانشگاهی" style="text-align:right"/>
+            <comboitem label="هنرستان" style="text-align:right"/>
+            <comboitem label="کاردانش" style="text-align:right"/>
+            <comboitem label="فنی حرفه ای" style="text-align:right"/>
+
+
+		</combobox>
+
+</hbox>
+        
+			</row>
+
+
+
+            <row id="r2" visible="false">
+<label value="نوع موسسه حمل و نقلی"/>
+<hbox>
+		<combobox id="combo2" style="text-align:right" width="100px" >
+
+             <comboitem label="دریایی" style="text-align:right"/>
+			<comboitem label="زمینی" style="text-align:right"/>
+            <comboitem label="هوایی" style="text-align:right"/>
+            <comboitem label="ریلی" style="text-align:right"/>
+            <comboitem label="فضایی" style="text-align:right"/>
+
+
+		</combobox>
+        <combobox id="combo13" style="text-align:right" width="100px" >
+
+             <comboitem label="دولتی" style="text-align:right"/>
+			<comboitem label="غیر انتفاعی" style="text-align:right"/>
+
+
+
+		</combobox></hbox>
+        
+			</row>
+<row id="r1_1" visible="false">
+ <label value="انتخاب رشته های موجود در موسسه (نظری)"/>
+		<listbox id="box" fixedLayout="true" multiple="true" checkmark="true" style="text-align:right">
+		<listhead style="text-align:right">
+			<listheader label="همه،هیچ"/>
+            <listheader style="text-align:right" label="وضعیت"/>
+            <listheader style="text-align:right" label="نام رشته "/>
+		</listhead>
+		<listitem >
+            <listcell label=""/>
+			<listcell label="عالی"/>
+            			<listcell label="ریاضی"/>
+		</listitem>
+		<listitem>
+            <listcell label=""/>
+			<listcell label="خوب"/>
+			<listcell label="تجربی"/>
+        </listitem>
+		<listitem>
+            <listcell label=""/>
+			<listcell label="متوسط"/>
+			<listcell label="انسانی"/>
+        </listitem>
+		<listitem>
+            <listcell label=""/>
+			<listcell label="هی"/>
+            <listcell label="معارف"/>
+		</listitem>
+        <listitem>
+            <listcell label=""/>
+			<listcell label="هی"/>
+			<listcell label="هنر"/>
+        </listitem>
+	</listbox>
+       
+			</row>
+<row id="r1_4" visible="false">
+     <label value="انتخاب رشته های موجود در موسسه (فنی و حرفه‌ای)"/>
+	<grid>
+			<rows>
+				<row spans="5"  style="text-align:right">
+				لطفا رشته‌های مورد نطر خود را انتخاب کنید؟</row>
+				<row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+
+                    </row>
+                <row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+                    </row><row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+
+                    </row>
+                    </rows>
+                    </grid>
+		
+       
+			</row>
+<row id="r1_5" visible="false">
+	<grid>
+			<rows>
+				<row spans="5"  style="text-align:right">
+				لطفا رشته‌های مورد نطر خود را انتخاب کنید؟</row>
+				<row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+
+                    </row>
+                <row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+                    </row><row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+
+                    </row>
+
+                    </rows>
+                    </grid>
+
+        <label value="انتخاب رشته های موجود در موسسه (کاردانش)"/>
+			</row>
+			<row id="r1_6" visible="false">
+	<grid>
+			<rows>
+				<row spans="5"  style="text-align:right">
+				لطفا رشته‌های مورد نطر خود را انتخاب کنید؟</row>
+				<row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+
+                    </row>
+                <row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+                    </row><row>
+                    		<checkbox  label="برق" onCheck="doChecked()" />
+                            <checkbox  label="الکترونیک" onCheck="doChecked()" />
+                            <checkbox  label="آب" onCheck="doChecked()" />
+                            <checkbox  label="کامپیوتر" onCheck="doChecked()" />
+                            <checkbox  label="معماری" onCheck="doChecked()" />
+
+                    </row>
+                    
+                    </rows>
+                    </grid>
+		
+        <label value="انتخاب رشته های موجود در موسسه (هنرستان)"/>
+			</row>
+
+		</rows>
+	</grid>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <style>
+			.btndiv .z-button-cr, .btndiv .z-button-cl,
+			.btndiv .z-button-bl, .btndiv .z-button-bm,
+			.btndiv .z-button-br, .btndiv .z-button-tl,
+			.btndiv .z-button-tm, .btndiv .z-button-tr {
+					background-image:none;
+				}
+				.btndiv .z-button-cm {
+					background : transparent url('') no-repeat 0 0 ;
+				}
+			.myBlack .z-button-cm {
+				background-image : url(img/button.png);
+			}
+			.myBlue .z-button-cm {
+				background-image : url(img/b-button.png);
+			}
+			.myRed .z-button-cm {
+				background-image : url(img/r-button.png);
+			}
+			.z-button-focus .z-button-cm {
+				background-position: 0 -62px
+			}
+			.z-button-over .z-button-cm {
+				background-position: 0 -30px
+			}
+			.z-button-clk .z-button-cm {
+				background-position: 0 -93px
+			}
+		</style>
+
+
+
+<separator bar="true"/>
+
+
+
+
+
+
+<hbox>
+<div class="btndiv" align="center">
+<button id="btn2" label="جدید" height="38px" sclass="myBlack" width="106px" href="http://localhost:8081/mail/"/>
+     <button id="btn"  label="ذخیره اطلاعات" height="38px" sclass="myBlack" width="106px" href="http://localhost:8081/calendar/calendar_mnm.zul"/>
+</div>
+</hbox>
+    </div>
+
+        <window id="win" border="normal" width="200px" position="center"
+			mode="overlapped"
+
+			visible="false">
+		<caption label="Hi there!" />
+		<label onClick="win.setVisible(false)" value="Hello, Effects!" />
+	</window>
+    </zk>

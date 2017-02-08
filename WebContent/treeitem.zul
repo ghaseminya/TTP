@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns="http://www.zkoss.org/2005/zul" xmlns:a="http://www.zkoss.org/2005/zk/annotation">
+<zscript>
+import java.io.File;
+import org.zkoss.zul.AbstractTreeModel;
+import org.zkoss.zul.TreeitemRenderer;
+
+public class FileTreeModel extends AbstractTreeModel {
+
+public FileTreeModel(File rootFile) {
+super(rootFile);
+}
+
+public Object getChild(Object object, int index) {
+File file = (File)object;
+File[] files = file.listFiles();
+return files[index];
+}
+
+public int getChildCount(Object object) {
+File file = (File)object;
+File[] files = file.listFiles();
+return files.length;
+}
+
+public boolean isLeaf(Object object) {
+File file = (File)object;
+File[] files = file.listFiles();
+if( null == files ){
+files = new File[0];
+}
+return (0 == files.length);
+}
+
+}
+
+public class FileTreeitemRenderer implements TreeitemRenderer {
+	public void render(Treeitem item, java.lang.Object data) {
+		File file = (File) data;
+		Treecell cell = new Treecell(file.getName());
+		Treerow tr = null;
+		if (item.getTreerow() == null) {
+			tr = new Treerow();
+			tr.setParent(item);
+		} else {
+			tr = item.getTreerow();
+			tr.getChildren().clear();
+		}
+		cell.setParent(tr);
+		item.setOpen(false);
+		item.setImage("/img/foldericon.png");
+		item.setValue(file);
+	}
+
+}
+
+userHome = new File( System.getProperty( "user.home" ) );
+
+treeModel = new FileTreeModel(userHome);
+treeitemRenderer = new FileTreeitemRenderer();
+
+</zscript>
+<window>
+<tree id="tree" pageSize="25" model="${treeModel}" treeitemRenderer="${treeitemRenderer}">
+<attribute name="onSelect">
+alert(self.selectedItem.label+" has value "+self.selectedItem.value);
+</attribute>
+</tree>
+</window>
+</zk>

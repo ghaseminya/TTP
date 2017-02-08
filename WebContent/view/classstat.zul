@@ -1,0 +1,180 @@
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+<h:div  dir="rtl"  align="center"><hbox>
+    <style>
+			.btndiv .z-button-cr, .btndiv .z-button-cl,
+			.btndiv .z-button-bl, .btndiv .z-button-bm,
+			.btndiv .z-button-br, .btndiv .z-button-tl,
+			.btndiv .z-button-tm, .btndiv .z-button-tr {
+					background-image:none;
+				}
+				.btndiv .z-button-cm {
+					background : transparent url('') no-repeat 0 0 ;
+				}
+			.myBlack .z-button-cm {
+				background-image : url(img/button.png);
+			}
+			.myBlue .z-button-cm {
+				background-image : url(img/b-button.png);
+			}
+			.myRed .z-button-cm {
+				background-image : url(img/r-button.png);
+			}
+			.z-button-focus .z-button-cm {
+				background-position: 0 -62px
+			}
+			.z-button-over .z-button-cm {
+				background-position: 0 -30px
+			}
+			.z-button-clk .z-button-cm {
+				background-position: 0 -93px
+			}
+		</style>
+<zscript>
+    import mnm.dars.categorylist;
+    class LiveGroupRenderer2 implements ListitemRenderer {
+		public void render(Listitem row, java.lang.Object data) {
+			if(data instanceof String[]) {
+				String[] ary = (String[]) data;
+                new Listcell(ary[2]).setParent(row);
+	            new Listcell(ary[1]).setParent(row);
+	            new Listcell(ary[0]).setParent(row);
+
+			} else {
+				new Label(data.toString()).setParent(row);
+			}
+
+		}
+	}
+    LiveGroupRenderer2 resn=new LiveGroupRenderer2();
+    class LiveGroupRender implements RowRenderer {
+		public void render(Row row, java.lang.Object data) {
+			if(data instanceof String[]) {
+				String[] ary = (String[]) data;
+new Label(ary[3]).setParent(row);
+                new Label(ary[2]).setParent(row);
+	            new Label(ary[1]).setParent(row);
+//	            new Listcell(ary[0]).setParent(row);
+
+			} else {
+				new Label(data.toString()).setParent(row);
+			}
+
+		}
+	}
+
+    public class LiveGroupRendesas   implements RowRenderer
+{
+
+    public LiveGroupRendesa()
+    {
+    }
+
+    public void render(Row row, Object data)
+    {
+        if(data instanceof String[])
+        {
+            String[] ary = (String[])(String[])(String[])data;
+
+
+//(new Label(ary[4])).setParent(row);
+(new Label(ary[0])).setParent(row);
+(new Label(ary[1])).setParent(row);
+(new Label(ary[2])).setParent(row);
+(new Label(ary[3])).setParent(row);
+
+        } else
+        {
+            //(new Label(data.toString())).setParent(row);
+        }
+    }
+}
+class mnmdb{
+public String[][] arr;
+}
+</zscript><panel  border="normal"   >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+<label value="لیست کلیه کلاس ها" />
+</caption>
+  <panelchildren >
+ <listbox id="dst"  rows="0"  width="395px" height="470px" >
+	        <listhead>
+                <listheader label="ردیف" align="right" width="35px"/>
+	            <listheader sortAscending="&#36;{asc}" sortDescending="&#36;{dsc}" label="نام کلاس" align="right"/>
+                <listheader sortAscending="&#36;{asc}" sortDescending="&#36;{dsc}" label="رشته" align="right"/>
+                <listheader sortAscending="&#36;{asc}" sortDescending="&#36;{dsc}" label="نوع" align="right"/>
+	        </listhead>
+	        <listitem  context="editPopup"  />
+            <listfoot>
+	        <listfooter />
+            <listfooter label="کل کلاس ها" />
+	        <listfooter style="font-family:'B Titr';font-size:2pt;text-align:right" id="clacol" label="0"/>
+
+	    </listfoot>
+
+        </listbox>
+        </panelchildren>
+        </panel>
+<zscript>
+
+
+categorylist cateli=new categorylist();
+darsi=cateli.getallclass("1");
+            for(int i=0;i&lt;darsi.length;i++)
+            {
+            Listitem li=new Listitem();
+            int as=Integer.parseInt(clacol.getLabel())+1;
+            li.appendChild(new Listcell(as+""));
+            className=darsi[i][1];
+            li.appendChild(new Listcell(darsi[i][1]));
+            li.appendChild(new Listcell(darsi[i][2]));
+            li.appendChild(new Listcell(darsi[i][3]));
+            li.addEventListener("onClick",new EventListener() {
+	public void onEvent(Event event) throws Exception {
+    titles.setValue(darsi[dst.getSelectedIndex()-1][2]);
+    titles.setStyle("font-family:'B Titr';font-size:10pt;text-align:right");
+
+         darsilist=cateli.getdars("1",Integer.parseInt(darsi[dst.getSelectedIndex()-1][4]));//
+         ListModel strs= new SimpleListModel(darsilist);
+         dst1.setModel(strs);
+         LiveGroupRender rensa=new LiveGroupRender();
+         dst1.setRowRenderer(rensa);
+        //clacols.setLabel(darsilist.length+"" );
+    }
+    });
+            clacol.setLabel(as+"");
+            dst.appendChild(li);
+            dst.setItemRenderer(resn);
+            }
+
+
+
+</zscript>
+<panel id="win2" border="normal" width="250px"  >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+
+<label value="دروس مورد نیاز  رشته"/>
+
+<label id="titles" />
+
+</caption>
+
+
+
+  <panelchildren id="pan1">
+	<grid id="dst1"    height="470px">
+	        <columns>
+                <column label="ردیف" align="right" width="32px"/>
+	            <column label="نام درس" align="right"/>
+                <column label="استاد انتخابی" align="right"/>
+	        </columns>
+
+
+	    </grid>
+
+
+</panelchildren>
+</panel></hbox>
+</h:div>
+</zk>

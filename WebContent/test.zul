@@ -1,0 +1,55 @@
+<zk>
+	<zscript>
+		String[][] dataza = new String[30][3];
+		for(int j=0; j &lt; dataza.length; ++j) {
+			dataza[j][0] = ""+j;
+			dataza[j][1] = "on "+j;
+			dataza[j][2] = "option "+j;
+		}
+		ListModel strseta= new SimpleListModel(dataza);
+class LiveGroupRenderer implements ListitemRenderer {
+		public void render(Listitem row, java.lang.Object data) {
+			if(data instanceof String[]) {
+				String[] ary = (String[]) data;
+	            new Listcell(ary[2]).setParent(row);
+	            new Listcell(ary[1]).setParent(row);
+	            new Listcell(ary[0]).setParent(row);
+
+			} else {
+				new Label(data.toString()).setParent(row);
+			}
+
+		}
+	}
+LiveGroupRenderer rensa=new LiveGroupRenderer();
+	</zscript>
+	<listbox id="list" width="200px" rows="10" model="&#36;{strseta}" itemRenderer="${rensa}">
+		<listhead>
+			<listheader label="Load on Demend" sort="auto"/>
+            <listheader label="Load on Demend" sort="auto"/>
+            <listheader label="Load on Demend" sort="auto"/>
+		</listhead>
+       <listfoot>
+                <listfooter/>
+            <listfooter label="کل درس ها " />
+	        <listfooter id="clacols" label="0"/>
+
+	    </listfoot>
+        <attribute name="onSelect">
+            alert("yes");
+            </attribute>
+	</listbox>
+    <button label="mnm " >
+        <attribute name="onClick">
+            dataza = new String[3][3];
+		for(int j=0; j &lt; dataza.length; ++j) {
+			dataza[j][0] = ""+j;
+			dataza[j][1] = "on "+j;
+			dataza[j][2] = "option "+j;
+		}
+		 strseta= new SimpleListModel(dataza);
+         list.setModel(strseta);
+         list.setItemRenderer(rensa);
+        </attribute>
+    </button>
+</zk>

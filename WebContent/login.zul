@@ -1,0 +1,22 @@
+    
+<div align="right">
+    <window title="ورود اعظا" width="350"  height="350" border="normal">
+    <div align="center">
+        <vbox>
+            <hbox><textbox id="user" value="" style="text-align: right;"/><label value="نار کاربری " /></hbox>
+            <hbox><textbox id="pass" value="" style="text-align: right;" type="password"/><label value="رمز ورود"/></hbox>
+            <hbox style="text-align: right;">
+                    <vbox style="text-align: right;">
+                        <textbox id="text1" value="" width="150px" style="text-align: right;"/>
+                        <captcha id="cpa" length="4" width="150px" height="50px" />
+                    </vbox>
+                    <vbox>
+                        پنجره امنیت
+                        <button label="بازنشانی" width="20"
+                            onClick="cpa.randomValue();" />
+                    </vbox>
+                </hbox><separator bar="true"/>
+             <div   align="center"><hbox ><button label="ورود" onClick="win.detach()"/>
+                <toolbarbutton  label="عضویت" href="register.zul"/></hbox></div>
+        </vbox></div>
+        </window></div>

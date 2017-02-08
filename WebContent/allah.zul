@@ -1,0 +1,120 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?> 
+<?page title="allah name" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="allah name" border="normal" xmlns:a="http://www.zkoss.org/2005/zk/annotation">
+<zscript>
+import mnm.allah.*;
+int update_index=-1;                                      //the index of allahList to add to db
+allah selected=new allah();                           //selected item
+crud cr=new crud();                                   //instande of db manager
+List allahList=cr.read();                             //fething table
+if(allahList.size()&gt;0)                             
+selected=allahList.get(0);                             //selected item to zero item
+public void getsel(){
+alert(allahList.size());                              
+}
+public void savetodb(){                               //save to database func.
+List result=new ArrayList();
+
+for(int i=update_index;i&lt;allahList.size();i++)
+{
+result.add(allahList.get(i));
+}
+alert(result.size());
+cr.create(result);
+}    
+
+</zscript>
+<button label="as" onClick="getsel()"/>
+<grid>
+		
+		<rows>
+			<row>	
+			<label value="Allah_name"/>
+			<a:bind value="selected.Name;save-when:SaveButton.onClick" />
+			<textbox id="an"/>
+				</row>
+				<row>	
+			<label value="Allah_name_E"/>
+			<a:bind value="selected.E_Name;save-when:SaveButton.onClick" />
+			<textbox id="ane"/>
+				</row>
+				<row>	
+			<label value="Translate"/>
+			<a:bind value="selected.translat;save-when:SaveButton.onClick" />
+			<textbox id="tr" />
+				</row>
+				<row>	
+			<label value="main uasage"/>
+			<a:bind value="selected.soureh;save-when:SaveButton.onClick" />
+			<textbox id="main"/>
+				</row>
+				<row>	
+			<label value="soureh"/>
+			<a:bind value="selected.ayeh;save-when:SaveButton.onClick" />
+			<textbox id="so"/>
+				</row>
+				<row>	
+			<label value="numbere"/>
+			<a:bind value="selected.ayeh;save-when:SaveButton.onClick" /> 
+			<textbox id="ayeh"/>
+				</row>
+				
+			
+			
+			
+		
+		</rows>
+	</grid>
+	<a:bind model="allahList" selectedItem="selected"/>
+  <listbox id="allist" width="800px" rows="8">
+    <listhead>
+      <listheader width="200px" value="Allah Name"/>
+      <listheader width="200px" value="Allah Name English"/>
+      <listheader width="200px" value="translate"/>
+      <listheader width="200px" value="soure"/>
+      <listheader width="200px" value="ayeh"/>
+    </listhead>
+    <a:bind _var="god"/>
+    <listitem onDoubleClick="alert(&quot;doubleclick&quot;);">
+      <listcell >
+        <a:bind value="god.Name"/>
+        <label id="fn"/>
+      </listcell>
+      <listcell style="white-space:nowrap;overflow:hidden">
+        <a:bind value="god.E_Name"/>
+        <label id="ln"/>
+      </listcell>
+      <listcell style="white-space:nowrap;overflow:hidden">
+        <a:bind value="god.translat"/>
+        <label maxlength="20"/>
+      </listcell>
+      <listcell style="white-space:nowrap;overflow:hidden">
+        <a:bind value="god.soureh"/>
+        <label maxlength="20"/>
+      </listcell>
+      <listcell style="white-space:nowrap;overflow:hidden">
+        <a:bind value="god.ayeh"/>
+        <label maxlength="20"/>
+      </listcell>
+
+      
+    </listitem>
+  </listbox>
+<button id="SaveButton" label="Save" onClick="alert()"/>
+<button id="in" label="new" onClick="insert()"/>
+<button id="SaveDB" label="SAVE ON DB" onClick="savetodb()"/>  
+<zscript>
+public void insert(){
+if(update_index==-1)
+update_index=allahList.size();
+allah te=new allah();
+allahList.add(te);
+//ListModel strset = new SimpleListModel(allahList);
+//allist.getModel().
+//allist.setModel(allahList);
+}
+
+</zscript>
+</window>
+</zk>

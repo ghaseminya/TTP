@@ -1,0 +1,49 @@
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+
+<window id="delwina" border="normal" width="300px" position="center" mode="overlapped" visible="false"  >
+
+        <caption >
+        <label value="اخطار"/>
+        <label id="ids" value="اخطار"/>
+        </caption>
+        <h:div align="right" dir="rtl">
+<zscript>
+    import mnm.asatid.*;
+    asatidlist asa=new asatidlist();
+    public void deletefrombank(){
+    //alert(Integer.parseInt(ids.value));
+    asa.delete(Integer.parseInt(ids.value));
+    delwina.setVisible(false);
+    }
+    public void mnm(){
+    refresh();
+    }
+</zscript>
+		<div align="left"><image src="/img/close.png" onClick="delwina.setVisible(false)" tooltip="exi"/>
+        <popup id="exi" width="90px">
+		<html>بستن پنجره</html>
+	     </popup>
+        </div>
+        <vbox align="center">
+            <div>
+        <label value="آیا می خواهید استاد  " style="font-family:'B Titr';font-size:8pt;text-align:right"/>
+        <label id="nam" value="" style="font-family:'B Titr';font-size:11pt;text-align:right;color:red"/>
+        <label value="را حذف کنید" style="font-family:'B Titr';font-size:8pt;text-align:right"/>
+        </div>
+
+        <hbox><h:div dir="ltr" align="center">
+         <button  label="لغو">
+        <attribute name="onClick">
+            delwina.setVisible(false);
+        </attribute>
+    </button>
+    <button  label="بله">
+        <attribute name="onClick">
+            deletefrombank();
+            refresh();
+        </attribute>
+    </button></h:div></hbox>
+    </vbox></h:div>
+  
+	</window>
+    </zk>

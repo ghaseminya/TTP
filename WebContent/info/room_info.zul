@@ -1,0 +1,157 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?> 
+<?page title="اتاق‌های و ساختمان‌ها" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="اتاق‌های و ساختمان‌ها" border="normal" xmlns:a="http://www.zkoss.org/2005/zk/annotation">
+<button label="as" onClick="getsel()"/>
+<zscript>
+import mnm.info.*;
+int update_index=-1;                                      //the index of allahList to add to db
+room selected=new room();                           //selected item
+roomfunc cr=new roomfunc();                                   //instande of db manager
+List roomList=cr.fetch();                             //fething table
+if(roomList.size()&gt;0)                             
+selected=roomList.get(0);                             //selected item to zero item
+public void getsel(){
+alert(roomList.size());
+alert(selected.name);                         
+}
+public void savetodb(){                               //save to database func.
+List result=new ArrayList();
+
+for(int i=update_index;i&lt;roomList.size();i++)
+{
+result.add(roomList.get(i));
+}
+alert(result.size());
+cr.create(result);
+}
+
+</zscript>
+<grid>
+	
+		<rows>
+			<row>	
+			<label value="نام اتاق"/>
+			<a:bind value="selected.name;save-when:SaveButton.onClick" />
+			<textbox id="name"/>
+				</row>
+				<row>	
+			<label value="ساختما"/>
+			<a:bind value="selected.building;save-when:SaveButton.onClick" />
+			<textbox id="build"/>
+				</row>
+				<row>	
+			<label value="واحد"/>
+			<a:bind value="selected.section;save-when:SaveButton.onClick" />
+			<textbox id="sec" />
+				</row>
+				<row>	
+			<label value="طبقه"/>
+			<a:bind value="selected.flor;save-when:SaveButton.onClick" />
+			<textbox id="flor"/>
+				</row>
+				<row>	
+			<label value="ظرفیت"/>
+			<a:bind value="selected.seat;save-when:SaveButton.onClick" />
+			<textbox id="seat"/>
+				</row>
+				<row>	
+			<label value="آزمایشگاه اول"/>
+			<a:bind value="selected.lab;save-when:SaveButton.onClick" /> 
+			<textbox id="lab1"/>
+				</row>
+				
+			<row>	
+			<label value="آزمایشگاه دوم"/>
+			<a:bind value="selected.lab2;save-when:SaveButton.onClick" /> 
+			<textbox id="lab2"/>
+				</row>
+				
+				<row>	
+			<label value="آزمایشگاه سوم"/>
+			<a:bind value="selected.lab3;save-when:SaveButton.onClick" /> 
+			<textbox id="lab3"/>
+				</row>
+				
+			
+
+		</rows>
+	</grid>
+	<a:bind model="roomList" selectedItem="selected"/>
+  <listbox id="allist" width="100%" rows="8">
+    <listhead> 
+      <listheader width="200px" value="نام اتاق"/>
+      <listheader width="200px" value="ساختمان"/>
+      <listheader width="200px" value="واحد"/>
+      <listheader width="200px" value="طبقه"/>
+      <listheader width="200px" value="ظرفیت"/>
+      <listheader width="200px" value="آزمایشگاه اول"/>
+      <listheader width="200px" value="آزمایشگاه دوم"/>
+      <listheader width="200px" value="آزمایشگاه سوم"/>
+    </listhead>
+    <a:bind _var="rom"/>
+    <listitem onDoubleClick="alert(&quot;doubleclick&quot;);">
+      
+      <listcell >
+      <a:bind value="rom.name"/>
+        <label id="fn" />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.building"/>
+        <label id="ln" />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.section"/>
+             <label />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.flor"/>
+             <label />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.seat"/>
+             <label />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.lab3"/>
+             <label />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.lab2"/>
+             <label />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.lab3"/>
+             <label />
+      </listcell>
+
+      
+    </listitem>
+  </listbox>
+<button id="SaveButton" label="Save" onClick="alert()"/>
+<button id="in" label="new" onClick="insert()"/>
+<button id="SaveDB" label="SAVE ON DB" onClick="savetodb()"/>  
+<zscript>
+public void insert(){
+if(update_index==-1)
+update_index=allahList.size();
+allah te=new allah();
+te.Name="al malek";
+te.E_Name="al malek";
+te.translat="the owner";
+te.soureh=1;
+allahList.add(te);
+ListModel strset = new SimpleListModel(allahList);
+allist.setModel(strset);
+}
+
+</zscript>
+</window>
+</zk>

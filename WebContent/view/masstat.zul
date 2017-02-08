@@ -1,0 +1,139 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+    <h:div align="center" dir="rtl">
+        <zscript>
+            import mnm.asatid.*;
+        import mnm.test.*;
+        import javax.swing.JOptionPane;
+	    asatidlist asa=new asatidlist();
+        List mast=asa.selectAll(1);
+        public String getbol(boolean[] s){
+        int result=0;
+        for(int i=0;i&lt;s.length;i++)
+            if(s[i])
+                result++;
+        String tem=result+"";
+        return tem;
+    }
+    public void  getal(boolean[] s){
+        int result=0;
+        for(int i=0;i&lt;s.length;i++)
+            if(s[i])
+                result++;
+        String tem=result+"";
+        alert(tem);
+    }
+        </zscript>
+
+<style>
+tr.myodd td.z-row-inner, tr.myodd {
+	background-color: #E4EBF8;
+}
+.myimg {
+	margin: 5px; border: 1px solid #B0C75E;
+}
+div.z-column-cnt {
+	text-align: center; font-weight: bold;
+}
+div.z-row-cnt span {
+	font-family: Tahoma,Arial,serif;
+	color: #0E3A99;
+}
+</style>
+<!-- Due to the security constraint, ZK demo site doesn't allow
+<zscript>
+class Comp implements Comparator {
+	private boolean _asc;
+	public Comp(boolean asc) {
+		_asc = asc;
+	}
+	public int compare(Object o1, Object o2) {
+		String s1 = o1.getChildren().get(1).getValue(),
+			s2 = o2.getChildren().get(1).getValue();
+		int v = s1.compareTo(s2);
+		return _asc ? v: -v;
+	}
+}
+Comp asc = new Comp(false), dsc = new Comp(false);
+</zscript>
+-->
+
+<style>
+			.btndiv .z-button-cr, .btndiv .z-button-cl,
+			.btndiv .z-button-bl, .btndiv .z-button-bm,
+			.btndiv .z-button-br, .btndiv .z-button-tl,
+			.btndiv .z-button-tm, .btndiv .z-button-tr {
+					background-image:none;
+				}
+				.btndiv .z-button-cm {
+					background : transparent url('') no-repeat 0 0 ;
+				}
+			.myBlack .z-button-cm {
+				background-image : url(img/button.png);
+			}
+			.myBlue .z-button-cm {
+				background-image : url(img/b-button.png);
+			}
+			.myRed .z-button-cm {
+				background-image : url(img/r-button.png);
+			}
+			.z-button-focus .z-button-cm {
+				background-position: 0 -62px
+			}
+			.z-button-over .z-button-cm {
+				background-position: 0 -30px
+			}
+			.z-button-clk .z-button-cm {
+				background-position: 0 -93px
+			}
+		</style>
+<grid fixedLayout="false" width="600px" oddRowSclass="myodd">
+	<columns>
+		<column width="5%" />
+		<column width="50%" label="نام و نام خانوادگی"/>
+		<column width="25%" label="جمع ساعت ها حضور"/>
+		<column width="20%" label="جمع کل کلاس ها"/>
+	</columns>
+	<rows>
+		<row  value="${each}" forEach="${mast}">
+			<detail open="false">
+				<hbox>
+					<image sclass="myimg" width="100px" height="100px"
+						src="/img/item1.jpg" />
+					<vbox>
+						<label
+							value="${each.name}"
+							style="font-weight:bold;font-style: italic;" />
+						<hbox>
+							<label value="نام:" />
+							<label value="${each.name}"
+								style="font-weight:bold;" />
+						</hbox>
+						<hbox>
+							<label value="شماره پرسنلی:" />
+							<label value="${each.name}"
+								style="font-weight:bold;" />
+						</hbox>
+						<hbox>
+							<label value="سمت:" />
+							<label value="${each.name}"
+								style="font-weight:bold;" />
+						</hbox>
+						<hbox>
+							<label value="نوع:" />
+							<label value="${each.name}"
+								style="font-weight:bold;" />
+						</hbox>
+					</vbox>
+				</hbox>
+			</detail>
+			<label value="${each.name}" />
+			<label style=""
+				value="${each.sum}" />
+			<label value="${each.act}" />
+
+		</row>
+	</rows>
+</grid>
+</h:div>
+</zk>

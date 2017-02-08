@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<zk xmlns:n="http://www.zkoss.org/2005/zk/native">
+<iframe width="100%" height="100%" onCreate='self.src = Executions.getCurrent().getParameter("url");'/>
+</zk>

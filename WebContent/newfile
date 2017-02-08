@@ -1,0 +1,17 @@
+<window id="addwin" border="normal" width="700px" height="500px" position="center"
+			mode="overlapped"
+			visible="false">
+    <caption><label value="استاد جدید" style="font-family:'B Titr';font-size:10pt;color:green"/></caption>
+    <div align="center">
+    <toolbarbutton label="محمد قاسمی‌نیا"  href="mailto:mohammad.ghasemy@gmail.com" style="font-family:'B Titr';font-size:10pt"/>
+    <label value="  دانشجوی کامپیوتر  " style="font-family:'B Titr';font-size:10pt"/>
+
+            <hbox>
+
+        <toolbarbutton label="WWW.ADOJI.Ir"  href="http://WWW.ADOJI.Ir" />
+        <label value="آدرس سایت" style="font-family:'B Titr';font-size:10pt"/>
+        </hbox>
+        <toolbarbutton label="صفحه شخصی طراح"  href="http://WWW.mGHasemI.Ir" style="font-family:'B Titr';font-size:10pt"/>
+        <div align="left"><image src="/img/close.png" onClick="addwin.setVisible(false)"/></div>
+</div>
+</window>

@@ -1,0 +1,159 @@
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+<h:div  dir="rtl"  align="center"><hbox>
+    <style>
+			.btndiv .z-button-cr, .btndiv .z-button-cl,
+			.btndiv .z-button-bl, .btndiv .z-button-bm,
+			.btndiv .z-button-br, .btndiv .z-button-tl,
+			.btndiv .z-button-tm, .btndiv .z-button-tr {
+					background-image:none;
+				}
+				.btndiv .z-button-cm {
+					background : transparent url('') no-repeat 0 0 ;
+				}
+			.myBlack .z-button-cm {
+				background-image : url(img/button.png);
+			}
+			.myBlue .z-button-cm {
+				background-image : url(img/b-button.png);
+			}
+			.myRed .z-button-cm {
+				background-image : url(img/r-button.png);
+			}
+			.z-button-focus .z-button-cm {
+				background-position: 0 -62px
+			}
+			.z-button-over .z-button-cm {
+				background-position: 0 -30px
+			}
+			.z-button-clk .z-button-cm {
+				background-position: 0 -93px
+			}
+		</style>
+<zscript>
+    import mnm.dars.categorylist;
+    class LiveGroupRenderer2 implements ListitemRenderer {
+		public void render(Listitem row, java.lang.Object data) {
+			if(data instanceof String[]) {
+				String[] ary = (String[]) data;
+                new Listcell(ary[2]).setParent(row);
+	            new Listcell(ary[1]).setParent(row);
+	            new Listcell(ary[0]).setParent(row);
+
+			} else {
+				new Label(data.toString()).setParent(row);
+			}
+
+		}
+	}
+    LiveGroupRenderer2 resn=new LiveGroupRenderer2();
+    class LiveGroupRenders implements RowRenderer {
+		public void render(Row row, java.lang.Object data) {
+			if(data instanceof String[]) {
+				String[] ary =(String[]) data;
+//new Label(ary[4]).setParent(row);
+
+//new Label(ary[2]).setParent(row);
+new Label(ary[1]).setParent(row);
+new Label(ary[3]).setParent(row);
+//new Label(ary[0]).setParent(row);
+
+			} else {
+				//new Label(data.toString()).setParent(row);
+                
+			}
+
+		}
+	}
+
+    
+class mnmdb{
+public String[][] arr;
+}
+</zscript><panel  border="normal"   >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+<label value="لیست کلیه کلاس ها" />
+</caption>
+  <panelchildren >
+ <listbox id="dst"  rows="0"  width="295px" height="470px" >
+	        <listhead>
+                <listheader label="شماره درس" align="right" width="35px"/>
+	            <listheader sortAscending="&#36;{asc}" sortDescending="&#36;{dsc}" label="نام درس" align="right"/>
+                <listheader sortAscending="&#36;{asc}" sortDescending="&#36;{dsc}" label="واحد" align="right"/>
+	        </listhead>
+</listbox>
+        </panelchildren>
+        </panel>
+<zscript>
+import mnm.dars.*;
+class detail{
+public double vahed;
+public String code;
+}
+    darslist as=new darslist();
+    List mnm=as.selectAllstat(1);
+    List mast=new  ArrayList();
+    String[][]  sat=new String[0][0];
+    mnm.dars.darslist.detail s;
+    for (int i=0;i&lt;mnm.size();i++){
+        dars ni=(dars) mnm.get(i);
+        Listgroup asas=new Listgroup(ni.getName());
+        dst.appendChild(asas);
+for(int j=0;j&lt;ni.getSub().size();j++)
+{
+            Listitem li=new Listitem();
+            //int as=Integer.parseInt(clacol.getLabel())+1;
+            //li.appendChild(new Listcell(as+""));
+             mnm.dars.darslist.detail s=(mnm.dars.darslist.detail) ni.getSub().get(j);
+            //List sat=new  ArrayList();
+            //sat=(ArrayList) listkoli.get(listkoli.indexOf(s.code)+1);
+            li.appendChild(new Listcell(s.code));
+            li.appendChild(new Listcell(s.name));
+            li.appendChild(new Listcell(s.vahed+""));
+            li.addEventListener("onClick",new EventListener() {
+	public void onEvent(Event event) throws Exception {
+    titles.setValue(s.name);
+        sat=as.selectdars(1,s.code);
+         ListModel strs= new SimpleListModel(sat);
+         dst1.setModel(strs);
+         LiveGroupRenders rensass=new LiveGroupRenders();
+         dst1.setRowRenderer(rensass);
+        //clacols.setLabel(darsilist.length+"" );
+    }
+    });
+            //clacol.setLabel(as+"");
+            dst.appendChild(li);
+            dst.setItemRenderer(resn);
+            }
+            //dst.appendChild(as);
+}
+
+
+</zscript>
+<panel id="win2" border="normal" width="350px"  >
+
+	<caption image="/img/Centigrade-Widget-Icons/FirstWindow-24x24.png"  style="text-align:right;">
+
+<label value="کلاس ها موجود برای درس"/>
+
+<label id="titles" style="font-family:'B Titr';font-size:10pt;text-align:right"/>
+
+</caption>
+
+
+
+  <panelchildren id="pan1">
+	<grid id="dst1"    height="470px">
+	        <columns>
+	            <column label="نام کلاس" align="right"/>
+                <column label="استاد انتخابی" align="right"/>
+	        </columns>
+
+
+	    </grid>
+
+
+</panelchildren>
+</panel></hbox>
+</h:div>
+</zk>

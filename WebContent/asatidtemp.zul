@@ -1,0 +1,93 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+<h:div align="right" dir="rtl">
+    <zscript>
+        import mnm.asatid.*;
+        import mnm.test.*;
+        import javax.swing.JOptionPane;
+	    LiveGroupRenderer renderer = new LiveGroupRenderer();
+        public boolean rahnemaii=false;
+        public boolean dabirestan=false;
+        public boolean pish=false;
+        public boolean honar=false;
+        public boolean karvadanesh=false;
+        public boolean faniherfi=false;
+        public boolean dabirestan1=false;
+        public boolean pish1=false;
+        public boolean honar1=false;
+        public boolean karvadanesh1=false;
+        public boolean faniherfi1=false;
+        public boolean dabirestan2=false;
+        public boolean pish2=false;
+        public boolean honar2=false;
+        public boolean karvadanesh2=false;
+        public boolean faniherfi2=false;
+
+asatidlist asa=new asatidlist();
+public String mtest="mnm is ok";
+List mast=asa.selectAll(1);
+//ListModel stot = new SimpleListModel(mast);
+//libo1.setModel(stot);
+selected=(asatid) mast.get(1);
+yselected=(asatid) mast.get(1);
+
+
+public void refresh(){
+alert("asdasdasdasdadasda");
+List asli=asa.selectAll(1);
+stt = new SimpleListModel(asli);
+libo1.setModel(stt);
+}
+public List etstrs(String s){
+        List result=new ArrayList();
+        int g;
+        while(s.indexOf("|")!=-1){
+                g=s.indexOf("|");
+                result.add(s.substring(0,g));
+                s=s.substring(g+1);
+        }
+        return result;
+    }
+public class LiveGroupRenderer   implements RowRenderer
+{
+
+    public LiveGroupRenderer()
+    {
+    }
+
+    public void render(Row row, Object data)
+    {
+        if(data instanceof List)
+        {
+            String[] ary = (String[])(String[])(String[])data;
+            (new Label(ary[0])).setParent(row);
+
+        } else
+        {
+            (new Label(data.toString())).setParent(row);
+        }
+    }
+}
+LiveGroupRenderer renderesr = new LiveGroupRenderer();
+        </zscript>
+<listbox id="libo1" rows="10" width="350px" height="300px" fixedLayout="true" style="background:white;" selectedItem="@{yselected}">
+										<listhead sizable="true">
+                                            <listheader  width="15%" label="لیست اساتید ارججمند" style="font-size:12pt;text-align:right"/>
+										</listhead>
+<listitem  sclass="row-border item" value="${each}" forEach="${mast}">
+											<listcell label="${each.name}" style="font-size:10pt;text-align:right"/>
+									
+                                    </listitem>
+                                    </listbox>
+                                     <button label="select" >
+       <attribute name="onClick">
+           //asatid s=(asatid)libo1.getSelectedItem();
+           //alert(s.name);
+           //mtest="mnm is very ok";
+           page.invalidate();
+           mast=asa.selectAll(1);
+           libo1.renderAll();
+       </attribute>
+	</button>
+                                    </h:div>
+                                    </zk>

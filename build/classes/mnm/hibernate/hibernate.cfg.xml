@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="hibernate.connection.password">mtaksir@qom.</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost/TTP</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+        <mapping resource="Dars.hbm.xml" />
+        <mapping resource="Reshte.hbm.xml" />
+        <mapping resource="Prof.hbm.xml" />
+        <mapping resource="Result.hbm.xml" />
+        <mapping resource="Dandh.hbm.xml" />
+        <mapping resource="Masters.hbm.xml" />
+        <mapping resource="Stu.hbm.xml" />
+        <mapping resource="Soustu.hbm.xml" />
+        <mapping resource="Kind.hbm.xml" />
+        <mapping resource="Coursegroup.hbm.xml" />
+        <mapping resource="Room.hbm.xml" />
+        <mapping resource="Course.hbm.xml" />
+        <mapping resource="Scholl.hbm.xml" />
+        <mapping resource="Schollday.hbm.xml" />
+        <mapping resource="RoomWeekBusy.hbm.xml" />
+        <mapping resource="Class.hbm.xml" />
+        <mapping resource="ListId.hbm.xml" />
+        <mapping resource="Coursename.hbm.xml" />
+        <mapping resource="Schollhour.hbm.xml" />
+        <mapping resource="Classdars.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,34 @@
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+    <h:div dir="rtl">
+	<zscript>
+	import org.zkoss.zkdemo.userguide.*;
+	LiveGroupRenderer renderer = new LiveGroupRenderer();
+	</zscript>
+
+	<zscript>
+        import mnm.result.classresult;
+        import mnm.dars.categorylist;
+        List mast=new classresult().gettitle(1);
+
+
+        categorylist cateli=new categorylist();
+        String[][] darsi=cateli.getallclass("1");
+        String[] header=new String[darsi.length];
+        String[][][] datass=new String[2][10][darsi.length];//
+            for(int i=0;i&lt;darsi.length;i++)
+            {
+            header[i]=(i+1)+" | "+darsi[i][1]+" | "+darsi[i][2]+" | "+darsi[i][3];
+            //datass[i]=new classresult().getjadval(Integer.parseInt("68"),1);//darsi[i][4]
+            }
+		GroupsModel modelss = new SimpleGroupsModel(datass,header);
+	</zscript>
+	<grid id="lb1" model="&#36;{modelss}" rowRenderer="&#36;{renderer}" height="400px" fixedLayout="true" >
+	 	<columns sizable="true" >
+	       <column width="380px" label="روز" align="right"/>
+	       <column label="${each}" align="right" value="${each}" forEach="${mast}"/>
+	     </columns>
+	</grid>
+    <button label="mnm " onClick="alert(darsi.length+darsi[1][4]);"/>
+    </h:div>
+</zk>
+

@@ -1,0 +1,51 @@
+<zk><div align="center">
+    <panel id="panel" framable="true" width="500px" height="200px"
+	title="آمار کلی"	border="normal"	>
+	<panelchildren>
+    <grid>
+		<columns menupopup="auto">
+            <column label="عنوان" align="right"/>
+			<column label="مقدار" align="right"/>
+
+		</columns>
+		<rows>
+			<row>
+				<label value="تعداد اتاق‌های موسسه"/>
+				<label value="The Fit"/>
+			</row>
+			<row>
+                <label value="تعداد استاییسد موسسه"/>
+				<label value="The Fit"/>
+			</row>
+			<row>
+				<label value="تعداد گروه‌های درسی موسسه"/>
+				<label value="The Fit"/>
+			</row>
+			<row>
+				<label value="تعداد دروس ارایه شده"/>
+				<label value="The Fit"/>
+			</row>
+			<row>
+				<label value="تعداد کلاس‌های در خواستی"/>
+				<label value="240 pages"/>
+			</row>
+		</rows>
+	</grid></panelchildren></panel>
+		<timer id="timer" delay="1000" repeats="true">
+		<attribute name="onTimer">
+			
+			pm.value = pm.value == 100 ? 0 : pm.value + 10;
+		</attribute>
+	</timer>
+	<separator bar="true" />
+	<progressmeter id="pm" width="200px" value="0" />
+	<separator bar="true" />
+	<button label="شروع زمانبندی" onClick="timer.stop()" />
+	<button label="تعلیق" onClick="timer.start()" />
+    <separator bar="true" />
+    <separator bar="true" />
+    <label value="تعداد کلاس‌های تنظیم‌شده"/><separator bar="true" orient="vertical"/>
+    <textbox value="100"/>
+
+</div>
+</zk>

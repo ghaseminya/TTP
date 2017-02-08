@@ -1,0 +1,125 @@
+<zk>
+
+
+    <label  value="اتاق شماره"/><label id="lb1"/><separator bar="true" orient="vertical"/><label id="lb2"/><separator bar="true"/>
+<div id="dv1" align="center">
+    <panel id="panel" framable="true" width="500px" height="200px"
+	title="آمار کلی"	border="normal"	>
+	<panelchildren>
+    <grid>
+		<columns menupopup="auto">
+            <column label="عنوان" align="right"/>
+			<column label="مقدار" align="right"/>
+
+		</columns>
+		<rows>
+			<row>
+				<label value="تعداد اتاق‌های موسسه"/>
+				<label value="The Fit"/>
+			</row>
+			<row>
+                <label value="تعداد استاییسد موسسه"/>
+				<label value="The Fit"/>
+			</row>
+			<row>
+				<label value="تعداد گروه‌های درسی موسسه"/>
+				<label value="The Fit"/>
+			</row>
+			<row>
+				<label value="تعداد دروس ارایه شده"/>
+				<label value="The Fit"/>
+			</row>
+			<row>
+				<label value="تعداد کلاس‌های در خواستی"/>
+				<label value="240 pages"/>
+			</row>
+		</rows>
+	</grid></panelchildren></panel>
+    </div>
+    <zscript>
+public class LiveGroupRendesas   implements RowRenderer
+{
+
+    public LiveGroupRendesa()
+    {
+    }
+
+    public void render(Row row, Object data)
+    {
+        if(data instanceof String[])
+        {
+            String[] ary = (String[])(String[])(String[])data;
+(new Label(ary[6])).setParent(row);
+(new Label(ary[5])).setParent(row);
+(new Label(ary[4])).setParent(row);
+(new Label(ary[3])).setParent(row);
+(new Label(ary[2])).setParent(row);
+(new Label(ary[1])).setParent(row);
+(new Label(ary[0])).setParent(row);
+
+        } else
+        {
+            //(new Label(data.toString())).setParent(row);
+        }
+    }
+}
+LiveGroupRendesas renderersa = new LiveGroupRendesas();
+for(int i=0;i&lt;5;i++){
+        Panel mnm=new Panel();
+        Grid gr1=new Grid();
+        Label lb2=new Label("mnm is ok");
+        Panelchildren pc1=new Panelchildren();
+        mnm.setBorder("normal");
+        mnm.setTitle("mnm is ok");
+        mnm.setClosable(true);
+        gr1.setAlign("center");
+        String[][] datas = new String[][] {
+				// Today
+				new String[]{"1","7","1","1","RE:te Problem","2008/11/18 10:16:27","16KB"},
+				new String[]{"7","7","1","1","RE:format","2008/11/18 06:27:31","11KB"},
+			};
+		ListModel models = new SimpleListModel(datas);
+        Columns cls1=new Columns();
+        Column cl1=new Column();
+        Column cl2=new Column();
+        Column cl3=new Column();
+        Column cl4=new Column();
+        Column cl5=new Column();
+        Column cl6=new Column();
+        Column cl7=new Column();
+        cl1.setLabel("شنبه");
+        cl2.setLabel("یک‌شنبه");
+        cl3.setLabel("دو‌شنبه");
+        cl4.setLabel("سه‌شنبه");
+        cl5.setLabel("چهارشنبه");
+        cl6.setLabel("پنج‌شنبه");
+        cl7.setLabel("جمعه");
+
+
+        cl1.setAlign("right");
+        cl2.setAlign("right");
+        cl3.setAlign("right");
+        cl4.setAlign("right");
+        cl5.setAlign("right");
+        cl6.setAlign("right");
+        cl7.setAlign("right");
+        cls1.appendChild(cl7);
+        cls1.appendChild(cl6);
+        cls1.appendChild(cl5);
+        cls1.appendChild(cl4);
+        cls1.appendChild(cl3);
+        
+        
+        cls1.appendChild(cl2);
+        cls1.appendChild(cl1);
+
+        gr1.appendChild(cls1);
+        gr1.setRowRenderer(renderersa);
+        gr1.setModel(models);
+        pc1.appendChild(lb2);
+        pc1.appendChild(gr1);
+        mnm.appendChild(pc1);
+        dv1.appendChild(mnm);}
+    </zscript>
+
+    </zk>

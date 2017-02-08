@@ -1,0 +1,63 @@
+	<tablelayout columns="2">
+			<tablechildren colspan="2">
+				<panel>
+					<panelchildren>
+
+						<label value="HOME" style="font-size:20px;"/>
+					</panelchildren>
+				</panel>
+			</tablechildren>
+			<tablechildren  width="50%">
+				<panel title="Reference" border="normal">
+					<panelchildren>
+						<grid fixedLayout="true" style="border:0;">
+						<rows>
+							<row><div><toolbarbutton label="Functional Designs"/>(<toolbarbutton label="Releases"/>, <toolbarbutton label="Designs"/>, Product Overview)</div></row>
+							<row><div><toolbarbutton label="Technical Docs"/></div></row>
+						</rows>
+						</grid>
+					</panelchildren>
+				</panel>
+			</tablechildren>
+			<tablechildren  width="50%">
+				<panel title="Customer Overview" border="normal"
+						style="margin-bottom:10px">
+					<panelchildren>
+						<grid fixedLayout="true" style="border:0px" height="100%">
+							<columns>
+								<column label="category" />
+								<column label="value" />
+							</columns>
+							<rows>
+								<row>
+									<label id="c0" value="Europe" />
+									<decimalbox id="v0" value="41.2"
+										constraint="no empty"  />
+								</row>
+								<row>
+									<label id="c1" value="Africa" />
+									<decimalbox id="v1" value="5.2"
+										constraint="no empty" />
+								</row>
+								<row>
+									<label id="c2" value="America" />
+									<decimalbox id="v2" value="36.4"
+										constraint="no empty" />
+								</row>
+								<row>
+								<label id="c3" value="Australia" />
+								<decimalbox id="v3" value="18.2"
+									constraint="no empty" />
+							</row>
+							<row>
+							<label id="c4" value="Asia" />
+							<decimalbox id="v4" value="28.2"
+								constraint="no empty" />
+						</row>
+							</rows>
+						</grid>
+					</panelchildren>
+				</panel>
+			</tablechildren>
+
+		</tablelayout>

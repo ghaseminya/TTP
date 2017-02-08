@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+<h:div align="right" dir="rtl"><groupbox id="gb" mold="3d" onOpen="" style="text-align: right;" open="false">
+
+
+    <caption >
+
+
+<label value="${empty arg.title ? 'No Title': arg.title} " />
+
+<label value="${arg.ids} " />
+
+</caption>
+	<style>
+	    .desc { color:#008bb6;font-weight:bold;font-family:times New Roman; }
+	    .pic { width:80px; height:80px; }
+	</style>
+<label class="desc" value=""/>
+	<hbox>
+	    <label class="desc" value="${empty arg.desc ?
+	    		'This Product have no description.': arg.desc}" />
+
+<div>
+        <html >
+              &lt;table id="table_3" border="1" class="modulo2"&gt;
+      &lt;caption&gt;${arg.desc}&lt;/caption&gt;
+      &lt;thead&gt;
+        &lt;tr&gt;&lt;td rowspan="2"&gt;&lt;/td&gt;&lt;th colspan="3"&gt;تجربی ۱ Automatic Subgroup&lt;/th&gt;&lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;!-- span --&gt;
+          &lt;th class="xAxis"&gt;08:00&lt;/th&gt;
+          &lt;th class="xAxis"&gt;09:45&lt;/th&gt;
+          &lt;th class="xAxis"&gt;11:00&lt;/th&gt;
+        &lt;/tr&gt;
+      &lt;/thead&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;th class="yAxis"&gt;شنبه&lt;/th&gt;
+          &lt;td&gt;ریاضی عمومی&lt;br /&gt;برقعای&lt;br /&gt;&lt;/td&gt;
+          &lt;td&gt;درس تک واحدی (فیزیک -- ریاضی )&lt;br /&gt;جدی - حاج اسماعیلی&lt;br /&gt;&lt;/td&gt;
+          &lt;td&gt;شیمی&lt;br /&gt;باقری&lt;br /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th class="yAxis"&gt;یکشنبه&lt;/th&gt;
+          &lt;td&gt;زمین شناسی&lt;br /&gt;رضوی&lt;br /&gt;&lt;/td&gt;
+          &lt;td&gt;زیست&lt;br /&gt;جوکار&lt;br /&gt;&lt;/td&gt;
+          &lt;td&gt;معارف&lt;br /&gt;زمانی&lt;br /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th class="yAxis"&gt;دوشنبه&lt;/th&gt;
+          &lt;td&gt;فیزیک&lt;br /&gt;حاج اسماعیلی&lt;br /&gt;&lt;/td&gt;
+          &lt;td&gt;فارسی&lt;br /&gt;حسینی&lt;br /&gt;&lt;/td&gt;
+          &lt;td&gt;شیمی&lt;br /&gt;باقری&lt;br /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+          &lt;th class="yAxis"&gt;سه شنبه&lt;/th&gt;
+          &lt;td&gt;انگلیسی&lt;br /&gt;توکلی&lt;br /&gt;&lt;/td&gt;
+          &lt;td&gt;انگلیسی&lt;br /&gt;توکلی&lt;br /&gt;&lt;/td&gt;
+          &lt;td&gt;زیست&lt;br /&gt;جوکار&lt;br /&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+        </html>
+        </div>
+        <zscript>
+        </zscript>
+	</hbox>
+    
+</groupbox>
+</h:div>
+</zk>

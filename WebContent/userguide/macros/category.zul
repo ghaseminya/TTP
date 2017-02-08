@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<div align="right" id="${arg.id}" style="" sclass="demo-category pointer" forward="main.onCategorySelect"
+	action="onmouseover:zk.addClass(this, 'demo-over'); onmouseout:zk.rmClass(this, 'demo-over'); onclick:if(zkau.insamepos(event)) onSelect(this)">
+	<image sclass="demo-category-img" tooltiptext="${arg.label}" src="${arg.src}" action="onmousedown:return false;"/>
+	<separator height="7px"/>
+	<label sclass="demo-category-text" value="${arg.label}"/>
+</div>

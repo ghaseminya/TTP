@@ -1,0 +1,137 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?> 
+<?page title="دروس و موارد مربوط" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="ثبت دروس" border="normal" xmlns:a="http://www.zkoss.org/2005/zk/annotation">
+<button label="as" onClick="getsel()"/>
+<zscript>
+import mnm.info.*;
+int update_index=-1;                                      //the index of allahList to add to db
+course selected=new course();                           //selected item
+coursefunc cr=new coursefunc();                                   //instande of db manager
+List courseList=cr.fetch();                             //fething table
+if(courseList.size()&gt;0)                             
+selected=courseList.get(0);                             //selected item to zero item
+public void getsel(){
+alert(roomList.size());
+alert(selected.name);                         
+}
+public void savetodb(){                               //save to database func.
+List result=new ArrayList();
+
+for(int i=update_index;i&lt;roomList.size();i++)
+{
+result.add(roomList.get(i));
+}
+alert(result.size());
+cr.create(result);
+}
+
+</zscript>
+<grid>
+	
+		<rows>
+			<row>	
+			<label value="نام درس"/>
+			<a:bind value="selected.name;save-when:SaveButton.onClick" />
+			<textbox id="name"/>
+				</row>
+				<row>	
+			<label value="واحد"/>
+			<a:bind value="selected.vahed;save-when:SaveButton.onClick" />
+			<textbox id="build"/>
+				</row>
+				<row>	
+			<label value="رشته"/>
+			<a:bind value="selected.reshte;save-when:SaveButton.onClick" />
+			<textbox id="sec" />
+				</row>
+				<row>	
+			<label value="کد"/>
+			<a:bind value="selected.id;save-when:SaveButton.onClick" />
+			<textbox id="flor"/>
+				</row>
+				<row>	
+			<label value="درجه سختی"/>
+			<a:bind value="selected.easily;save-when:SaveButton.onClick" />
+			<textbox id="seat"/>
+				</row>
+				<row>	
+			<label value="معدل ترم پیش"/>
+			<a:bind value="selected.oldavg;save-when:SaveButton.onClick" /> 
+			<textbox id="lab1"/>
+				</row>
+				
+			
+				
+			
+
+		</rows>
+	</grid>
+	<a:bind model="courseList" selectedItem="selected"/>
+  <listbox id="allist" width="100%" rows="8">
+    <listhead> 
+      <listheader width="200px" value="نام درس"/>
+      <listheader width="200px" value="کد"/>
+      <listheader width="200px" value="واحد"/>
+      <listheader width="200px" value="رشته"/>
+      <listheader width="200px" value="درجه سختی"/>
+      <listheader width="200px" value="معدل ترم گزشته"/>
+    </listhead>
+    <a:bind _var="rom"/>
+    <listitem onDoubleClick="alert(&quot;doubleclick&quot;);">
+      
+      <listcell >
+      <a:bind value="rom.name"/>
+        <label id="fn" />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.id"/>
+        <label id="ln" />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.vahed"/>
+             <label />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.reshte"/>
+             <label />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.oldavg"/>
+             <label />
+      </listcell>
+      
+      <listcell style="white-space:nowrap;overflow:hidden">
+      <a:bind value="rom.easily"/>
+             <label />
+      </listcell>
+      
+     
+
+      
+    </listitem>
+  </listbox>
+<button id="SaveButton" label="Save" onClick="alert()"/>
+<button id="in" label="new" onClick="insert()"/>
+<button id="SaveDB" label="SAVE ON DB" onClick="savetodb()"/>  
+<zscript>
+public void insert(){
+if(update_index==-1)
+update_index=allahList.size();
+allah te=new allah();
+te.Name="al malek";
+te.E_Name="al malek";
+te.translat="the owner";
+te.soureh=1;
+allahList.add(te);
+ListModel strset = new SimpleListModel(allahList);
+allist.setModel(strset);
+}
+
+</zscript>
+</window>
+</zk>

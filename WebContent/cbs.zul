@@ -1,0 +1,77 @@
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+<h:div align="right" dir="rtl">
+<listbox id="boxss" fixedLayout="true" multiple="true" checkmark="true">
+		<listhead>
+			<listheader label="کلاس" align="right" sort="auto"/>
+			<listheader label="رشته" align="right" sort="auto"/>
+		</listhead>
+		<listitem>
+			<listcell label="18"/>
+			<listcell label="A young lady."/>
+		</listitem>
+		<listitem>
+			<listcell label="20"/>
+			<listcell label="A college student."/>
+		</listitem>
+		<listitem>
+			<listcell label="32"/>
+			<listcell label="A remarkable artist."/>
+		</listitem>
+		<listitem>
+			<listcell label="Henry"/>
+			<listcell label="A graduate."/>
+		</listitem>
+	</listbox>
+    <h:div dir="ltr">
+    <button label="asd" >
+     <attribute name="onClick">
+                   win2.doModal();
+                </attribute>
+                </button>
+    <button label="asd" onClick=""/>
+    </h:div></h:div>
+   <window id="win2" title="پرداخت با نامه" visible="false" height="200px" width="400px">
+
+   <h:div dir="rtl" align="center">
+
+    <grid fixedLayout="true" >
+	<columns>
+		<column label="عنوان"  align="right" />
+		<column label="مقدار"  align="right"/>
+	</columns>
+	<rows>
+		<row>
+			<label value="نام کلاس" />
+            <textbox value="" />
+		</row>
+        <row>
+        <label value="رشته تحصیلی" />
+         <combobox>
+			<comboitem label="ریش دانشگاه" />
+			<comboitem label="مدیر انتشارات" />
+			<comboitem label="معاونت آموزش" />
+            <comboitem label="مدیر کل آموزش" />
+		</combobox>
+       	</row>
+        
+
+	</rows>
+    </grid>
+    <button label="تایید" >
+        <attribute name="onClick">
+                     form3.setVisible(false);
+    //getSessionBean1().setFlagforform(true);
+     String mnm =textField6.getText().toString();
+       int nas=0;
+       String mnm1="2";
+        if(radioButton1.isChecked())
+           mnm1="1";
+        b=getSessionBean1().getbon();
+        khas(Integer.parseInt(mnm),Integer.parseInt(b),mnm1);
+                </attribute>
+                </button>
+
+    <button label="لغو" onClick="win2.setVisible(false);"/>
+    </h:div>
+</window>
+   </zk>

@@ -1,0 +1,358 @@
+<?component name="master" macroURI="master.zul"?>
+<?component name="delwina" macroURI="delwin.zul" inline="true"?>
+<?component name="addwin" macroURI="addwin.zul" inline="true"?>
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit"?>
+<zk xmlns:h="http://www.zkoss.org/2005/zk/native">
+<h:div align="right" dir="rtl">
+    <zscript>
+        import mnm.asatid.*;
+        import mnm.test.*;
+        import javax.swing.JOptionPane;
+	    LiveGroupRenderer renderer = new LiveGroupRenderer();
+        public boolean rahnemaii=false;
+        public boolean dabirestan=false;
+        public boolean pish=false;
+        public boolean honar=false;
+        public boolean karvadanesh=false;
+        public boolean faniherfi=false;
+        public boolean dabirestan1=false;
+        public boolean pish1=false;
+        public boolean honar1=false;
+        public boolean karvadanesh1=false;
+        public boolean faniherfi1=false;
+        public boolean dabirestan2=false;
+        public boolean pish2=false;
+        public boolean honar2=false;
+        public boolean karvadanesh2=false;
+        public boolean faniherfi2=false;
+
+asatidlist asa=new asatidlist();
+public String mtest="mnm is ok";
+List mast=asa.selectAll(1);
+//ListModel stot = new SimpleListModel(mast);
+//libo1.setModel(stot);
+selected=(asatid) mast.get(1);
+yselected=(asatid) mast.get(1);
+
+
+public void refresh(){
+alert("asdasdasdasdadasda");
+List asli=asa.selectAll(1);
+stt = new SimpleListModel(asli);
+libo1.setModel(stt);
+}
+public List etstrs(String s){
+        List result=new ArrayList();
+        int g;
+        while(s.indexOf("|")!=-1){
+                g=s.indexOf("|");
+                result.add(s.substring(0,g));
+                s=s.substring(g+1);
+        }
+        return result;
+    }
+public class LiveGroupRenderer   implements RowRenderer
+{
+
+    public LiveGroupRenderer()
+    {
+    }
+
+    public void render(Row row, Object data)
+    {
+        if(data instanceof List)
+        {
+            String[] ary = (String[])(String[])(String[])data;
+            (new Label(ary[0])).setParent(row);
+
+        } else
+        {
+            (new Label(data.toString())).setParent(row);
+        }
+    }
+}
+LiveGroupRenderer renderesr = new LiveGroupRenderer();
+        </zscript>
+     <toolbar>
+	<bandbox id="bd">
+		<bandpopup>
+			<vbox>
+				<hbox>
+					Search
+					<textbox />
+				</hbox>
+				<listbox width="200px"
+					onSelect="bd.value=self.selectedItem.label; bd.closeDropdown();">
+					<listhead>
+						<listheader label="Name" />
+						<listheader label="Description" />
+					</listhead>
+					<listitem>
+						<listcell label="برقعی" />
+						<listcell label="استاد" />
+					</listitem>
+					<listitem>
+						<listcell label="جدی" />
+						<listcell label="استاد" />
+					</listitem>
+					<listitem>
+						<listcell label="مسعودی" />
+						<listcell label="استاد" />
+					</listitem>
+				</listbox>
+			</vbox>
+		</bandpopup>
+	</bandbox>
+    <toolbarbutton label="${mtest}"/>
+</toolbar>
+
+
+    <button id="mnms"  label="Down" action="onclick:  zk.hide(#{win});anima.moveDown(#{win})" />
+    <button id="mnmss"  label="Down" onClick="win.setVisible(true)" />
+
+
+<div align="center">
+
+
+        <hbox><vbox>
+              <listbox id="libo1" rows="10" width="350px" height="300px" fixedLayout="true" style="background:white;" selectedItem="@{yselected}">
+										<listhead sizable="true">
+                                            <listheader  width="15%" label="لیست اساتید ارججمند" style="font-size:12pt;text-align:right"/>
+										</listhead>
+<listitem  sclass="row-border item" value="${each}" forEach="${mast}">
+											<listcell label="${each.name}" style="font-size:10pt;text-align:right"/>
+									<attribute name="onClick">{
+                                    //
+                                        //alert(yselected.name);
+                                        grade=new String[3][7];
+                                        for(int j=0;j&lt;yselected.limitation.length;j++)
+                                        {
+                                         yx=j/7;
+                                         xy=j%7;
+                                        try{
+                                        if(yselected.limitation[j])
+                                        grade[yx][xy]="حضور دارند";
+                                        }catch(ArrayIndexOutOfBoundsException as){
+                                        String mas=as.toString()+j;
+
+                                        }
+                                        }
+                                        ListModel strset = new SimpleListModel(grade);
+                                        mygrid.setModel(strset);
+                                        mygrid.setRowRenderer(renderer);
+                                        strset = new SimpleListModel(etstrs(yselected.secuence));
+                                        list.setModel(strset);
+}</attribute>
+                                    </listitem>
+                                    </listbox>
+                                    <zscript>
+
+//libo1.setSelectedItem();
+                                    </zscript>
+                                    <h:div dir="ltr" align="right">
+                                            <button label="حذف" >
+                                                <attribute name="onClick">
+                                                    delwina.getFellow("nam").setValue(yselected.name);
+                                                    delwina.getFellow("ids").setValue(yselected.id+"");
+                                                   delwina.visible=true;
+                                                </attribute>
+                                            </button>
+                                            <button label="ویرایش" onClick="mnmsa();"/>
+                                            <button label="اضافه" onClick="addwin.setVisible(true);"/>
+
+                                            </h:div></vbox>
+                                            <label value="      "/>
+            <vbox>
+                 <zscript>
+      grades = new String[]{"","",""};
+
+day = new String[] {"شنبه","یک شنبه","دو شنبه","سه شنبه","چهار شنبه","پنج شنبه","جمعه"};
+int i=0;
+
+  </zscript>
+  <panel title="حضور استا${yselected.name}د در موسسه" style="font-size:12pt;text-align:right"><panelchildren>
+             <grid width="330px" id="mygrid" >
+               <columns >
+			<column label="${each}" forEach="${day}" align="right"/>
+		</columns>
+
+</grid></panelchildren></panel>
+
+    <zscript>
+
+        int sizin=0;
+        public void mnmsa(){
+        alert(sizin+"mnm is ok"+yselected.limitation.length);
+        }
+
+    //String[] models=getstr(yselected.secuence);
+       	ListModel strsetlist = new SimpleListModel(etstrs(yselected.secuence));
+        //lab1.setValue(yselected.name);
+grade=new String[3][7];
+for(int j=0;j&lt;yselected.limitation.length;j++)
+{
+int yx=j/7;
+int xy=j%7;
+
+if(yselected.limitation[j])
+grade[yx][xy]="حضور دارند";
+}
+ListModel strset = new SimpleListModel(grade);
+mygrid.setModel(strset);
+mygrid.setRowRenderer(renderer);
+	</zscript>
+    <panel title=" استاد ${yselected.name}دروس تدریس" style="font-size:12pt;text-align:right"><panelchildren>
+	<listbox id="list" width="330px" height="120px" rows="${sizin}" model="&#36;{strsetlist}">
+		<listhead>
+			<listheader label="لیست دروس" sort="auto" style="text-align:right"/>
+		</listhead>
+	</listbox></panelchildren></panel>
+            </vbox>
+
+  </hbox>
+
+
+
+    <style>
+			.btndiv .z-button-cr, .btndiv .z-button-cl,
+			.btndiv .z-button-bl, .btndiv .z-button-bm,
+			.btndiv .z-button-br, .btndiv .z-button-tl,
+			.btndiv .z-button-tm, .btndiv .z-button-tr {
+					background-image:none;
+				}
+				.btndiv .z-button-cm {
+					background : transparent url('') no-repeat 0 0 ;
+				}
+			.myBlack .z-button-cm {
+				background-image : url(img/button.png);
+			}
+			.myBlue .z-button-cm {
+				background-image : url(img/b-button.png);
+			}
+			.myRed .z-button-cm {
+				background-image : url(img/r-button.png);
+			}
+			.z-button-focus .z-button-cm {
+				background-position: 0 -62px
+			}
+			.z-button-over .z-button-cm {
+				background-position: 0 -30px
+			}
+			.z-button-clk .z-button-cm {
+				background-position: 0 -93px
+			}
+		</style>
+<separator bar="true"/><hbox>
+<div class="btndiv" align="center">
+<button id="btn2" label="جدید" height="38px" sclass="myBlack" width="106px" href="http://localhost:8081/mail/"/>
+     <button id="btn"  label="ذخیره اطلاعات" height="38px" sclass="myBlack" width="106px" href="http://localhost:8081/calendar/calendar_mnm.zul"/>
+</div>
+</hbox>
+    </div>
+
+        <window id="win" border="normal" width="200px" position="center"
+			mode="popup"
+
+			visible="false">
+		<caption label="Hi there!" />
+		<label onClick="win.setVisible(false)" value="Hello, Effects!" />
+	</window>
+   <delwina/>
+   <addwin/>
+   <button label="select" >
+       <attribute name="onClick">
+           //asatid s=(asatid)libo1.getSelectedItem();
+           //alert(s.name);
+           mtest="mnm is very ok";
+           page.invalidate();
+       </attribute>
+	</button>
+
+    </h:div></zk>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                       public String mtest="mnm is ok";
+                                libo1=new Listbox();
+List mast=asa.selectAll(1);
+//libo1.setModel(stot);
+for(int ij=0;ij&lt;mast.size();ij++)
+{
+Listitem assa=new Listitem();
+ asatid bis=(asatid) mast.get(ij);
+    Listcell assb=new Listcell(bis.getName());
+    assb.setStyle("font-family:'B Zar';font-size:10pt;text-align:right;color:red");
+    assa.appendChild(assb);
+
+    assa.addEventListener("onClick",new EventListener() {
+	public void onEvent(Event event) throws Exception {
+    yselected=(asatid) mast.get(libo1.getSelectedIndex());
+            //alert(yselected.id);
+            grade=new String[3][7];
+      //      Listcell assb=(Listcell)assa.getFirstChild();
+           // assb.setLabel(bis.name);
+    //assb.setStyle("font-size:10pt;text-align:right");
+
+                                        for(int j=0;j&lt;yselected.limitation.length;j++)
+                                        {
+                                         yx=j/7;
+                                         xy=j%7;
+                                        try{
+                                        if(yselected.limitation[j])
+                                        grade[yx][xy]="حضور دارند";
+                                        }catch(ArrayIndexOutOfBoundsException as){
+                                        String mas=as.toString()+j;
+
+                                        }
+                                        }
+                                        ListModel strset = new SimpleListModel(grade);
+                                        mygrid.setModel(strset);
+                                        mygrid.setRowRenderer(renderer);
+                                        strset = new SimpleListModel(etstrs(yselected.secuence));
+                                        list.setModel(strset);
+
+           }
+            });
+
+   libo1.appendChild(assa);
+    //Listcell assb=(Listcell)assa.getFirstChild();
+    //asatid bis=(asatid) libo1.getListModel().getElementAt(ij-1);
+    //assb.setLabel(bis.name);
+    //assb.setStyle("font-size:10pt;text-align:right");
+}
+if(mast.size()>0){
+selected=(asatid) mast.get(1);
+yselected=(asatid) mast.get(1);}
+//libo1.setSelectedItem();
+
+
+
+
+

@@ -1,0 +1,62 @@
+<?page title="لیست گروه ‌های آموزشی" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+
+<grid id="gr1">
+		<columns>
+			<column label="ردیف"/>
+			<column label="گروه آموزشی"/>
+			<column label="عنوان گروه"/>
+			<column label="ظرفیت"/>
+			<column label="محدودیت مکانی"/>
+			<column label="محدودیت زمانی"/>
+		</columns>
+		<rows>
+			<row>			
+			</row>
+		</rows>
+	</grid>
+	<zscript>
+mnm.test.tests lis=new mnm.test.tests();
+
+String[][] data=new mnm.view.group().fetch();
+String[][] dataor=new String[data.length][6];
+public class LiveGroupRendesas   implements RowRenderer
+{
+
+    public LiveGroupRendesa()
+    {
+    }
+
+    public void render(Row row, Object data)
+    {
+        if(data instanceof String[])
+        {
+            String[] ary = (String[])(String[])(String[])data;
+(new Label(ary[5])).setParent(row);
+(new Label(ary[4])).setParent(row);
+(new Label(ary[3])).setParent(row);
+(new Label(ary[2])).setParent(row);
+(new Label(ary[1])).setParent(row);
+(new Label(ary[0])).setParent(row);
+
+        } else
+        {
+            //(new Label(data.toString())).setParent(row);
+        }
+    }
+}
+LiveGroupRendesas renderersa = new LiveGroupRendesas();
+for (int i = 0; i &lt; data.length; i++) {
+			dataor[i][0]=data[i][0];
+			dataor[i][1]=lis.recumenuv_as_str(Integer.parseInt(data[i][1]));
+			dataor[i][2]="mnm";
+			dataor[i][3]="mnbm";
+			dataor[i][4]="mnm";
+			dataor[i][5]="100";
+		}
+ListModel models = new SimpleListModel(dataor);
+gr1.setRowRenderer(renderersa);
+gr1.setModel(models);
+</zscript>
+</zk>
